@@ -10,6 +10,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { Link } from "react-router-dom";
+import { authContext } from "./context/Auth";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -119,6 +120,9 @@ const Navbar = () => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [tokenState, setTokenState] = React.useState(null);
 
+  const auth = React.useContext(authContext).state;
+  // console.log({ auth: auth.loggedIn });
+
   React.useEffect(() => {
     var temp = localStorage.getItem("token");
     setTokenState(temp);
@@ -208,7 +212,7 @@ const Navbar = () => {
   return (
     <React.Fragment>
       <div className={classes.grow}>
-        {tokenState ? (
+        {auth.loggedIn ? (
           <AppBar position="static" className={classes.basic}>
             <Toolbar>
               <IconButton

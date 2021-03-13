@@ -1,15 +1,15 @@
-import React from 'react'
+import React from "react";
+import { authContext } from "./context/Auth";
 
 export default class Logout extends React.Component {
+  static contextType = authContext;
   componentDidMount() {
     localStorage.clear();
-    this.props.history.push('/');
+    console.log({ c: this.context.dispatch });
+    this.context.dispatch({ type: "LOG_OUT" });
+    this.props.history.push("/");
   }
   render() {
-    return (
-      <div>
-
-      </div>
-    )
+    return <div></div>;
   }
 }

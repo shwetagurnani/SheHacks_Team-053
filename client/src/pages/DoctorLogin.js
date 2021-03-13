@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import {
   Grid,
@@ -21,6 +21,7 @@ import {
   withStyles,
   createMuiTheme,
 } from "@material-ui/core/styles";
+import { authContext } from "../components/context/Auth";
 
 const useStyles = makeStyles((theme) => ({
   BackgroundHead: {
@@ -98,6 +99,8 @@ const DoctorLogin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
 
+  let { dispatch } = useContext(authContext);
+
   const handleLogin = (e) => {
     e.preventDefault();
     axios
@@ -106,6 +109,9 @@ const DoctorLogin = (props) => {
         if (res.data.success) {
           console.log(res.data);
           localStorage.setItem("token", res.data.token);
+          dispatch({ type: "SET_ROLE", payload: "DOCTOR" });
+          dispatch({ type: "SET_USERID", payload: res.data.id });
+          dispatch({ type: "LOG_IN" });
           props.history.push("/doctordashboard");
         } else {
           console.log(res.data);
@@ -122,57 +128,59 @@ const DoctorLogin = (props) => {
     margin: "20px auto",
   };
 
-
   const btnstyle = { margin: "8px 0" };
   return (
-  <div className={classes.extra}>
-    <img src="./signup.png" alt="lady" className={classes.BackgroundHead} />
-    <div>
-      <Grid>
-        <div className={classes.paperStyle}>
-          <Grid align="center">
-            <h4 className={classes.heading}>Sign In</h4>
-          </Grid>
-          <div className={classes.extra1}>
-            <TextField
-              id="outlined-basic"
-              label="Email"
-              variant="outlined"
-              type="email"
-              className={classes.field}
-              onChange={ (event) => {setEmail(event.target.value)}}
-            />
-            <TextField
-              id="outlined-basic"
-              label="Password"
-              variant="outlined"
-              type="password"
-              className={classes.field}
-              onChange={ (event) => {setPass(event.target.value)}}
-            />
+    <div className={classes.extra}>
+      <img src="./signup.png" alt="lady" className={classes.BackgroundHead} />
+      <div>
+        <Grid>
+          <div className={classes.paperStyle}>
+            <Grid align="center">
+              <h4 className={classes.heading}>Sign In</h4>
+            </Grid>
+            <div className={classes.extra1}>
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                type="email"
+                className={classes.field}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+              <TextField
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                type="password"
+                className={classes.field}
+                onChange={(event) => {
+                  setPass(event.target.value);
+                }}
+              />
 
-            <Link >
-              <Button
-                type="submit"
-                variant="contained"
-                className={classes.btnstyle}
-                fullWidth
-                onClick={handleLogin}
-              >
-                Sign In As Doctor
-              </Button>
-            </Link>
+              <Link>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  className={classes.btnstyle}
+                  fullWidth
+                  onClick={handleLogin}
+                >
+                  Sign In As Doctor
+                </Button>
+              </Link>
+            </div>
+
+            <Typography>
+              New Member ?<Link href="/doctorsignup">Sign Up</Link>
+            </Typography>
           </div>
-
-          <Typography>
-            New Member ?<Link href="/doctorsignup">Sign Up</Link>
-          </Typography>
-        </div>
-      </Grid>
+        </Grid>
+      </div>
     </div>
-  </div>
   );
-  
 };
 
 export default DoctorLogin;

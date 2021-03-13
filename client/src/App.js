@@ -34,6 +34,8 @@ const App = () => {
           <Route path="/patientdashboard" component={PatientDashboard} />
           <Route path="/Logout" component={Logout} />
           <Route path="/getAppointment" component={GetAppointment} />
+          {/* <Route exact path="/chat" component={Chat} /> */}
+          
           <Route path="/features" component={Features} />
           <Route path="/aitools" component={AiTools} />
           <Route path="/prescription" component={Prescription} />
