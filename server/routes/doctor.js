@@ -9,14 +9,75 @@ const doctors = require("../models/Doctor");
 var spawn = require("child_process").spawn;
 const Appointment = require("../models/Appointment");
 const { verifyToken } = require("../middlewares/verifyToken");
-const Image = require("../models/Image");
+// const Image = require("../models/Image");
 const Doctor = require("../models/Doctor");
+
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
+let path = require("path");
+let prescription = require("../models/Prescription");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "images");
+  },
+  filename: function (req, file, cb) {
+    cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+  if (allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+let upload = multer({ storage, fileFilter });
+
+router.route("/add").post(upload.single("img"), (req, res) => {
+  // const name = req.body.name;
+  // const praise = req.body.praise;
+  // const highFive = req.body.highFive;
+  const photo = req.file.filename;
+
+  const newPresData = {
+    // name,
+    // praise,
+    // highFive,
+    img: photo,
+  };
+
+  const newPres = new prescription(newPresData);
+
+  newPres
+    .save()
+    .then(() => res.json("Prescription Added"))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+
+router.get("/display", (req, res) => {
+  prescription.find({}, function (err, img) {
+    if (err) res.send(err);
+    console.log(img);
+    res.contentType("json");
+    res.send(img);
+  });
+});
+
+
+
+
 
 router.post("/register", (req, res) => {
   Doctor.findOne({ email: req.body.email }).then((doctor) => {
     if (doctor) {
       return res.status(400).json({ email: "Email already exists" });
     } else {
+      console.log(req.body.achievements);
       const newDoctor = new Doctor({
         name: req.body.name,
         email: req.body.email,
@@ -28,6 +89,7 @@ router.post("/register", (req, res) => {
         phone: req.body.phone,
         specialization: req.body.specialization,
         hospital_name: req.body.hospital_name,
+        achievements: req.body.achievements,
         mon: req.body.mon,
         tues: req.body.tues,
         wed: req.body.wed,
@@ -116,6 +178,18 @@ router.get("/getSpecialization", (req, res) => {
     });
 });
 
+router.get("/getDoctors/:category", (req, res) => {
+  const category = req.params.category;
+
+    doctors.find({}).then((response) => {
+      res.json({ success: true, response });
+    })
+    .catch((err) => {
+      res.json({ success: false });
+    });
+});
+
+
 router.get("/getDays", (req, res) => {
   doctors.find({}).then((doctor) => {
     var response = {};
@@ -185,17 +259,17 @@ router.get("/myPatients", verifyToken, (req, res) => {
     });
 });
 
-router.get("/displayPrescription", verifyToken, (req, res) => {
-  let doctorId = req.userId;
-  Image.find({ doctor_id: doctorId })
-    .then((images) => {
-      console.log(images);
-      res.json({ images, success: true });
-    })
-    .catch((err) => {
-      res.json({ success: false });
-    });
-});
+// router.get("/displayPrescription", verifyToken, (req, res) => {
+//   let doctorId = req.userId;
+//   Image.find({ doctor_id: doctorId })
+//     .then((images) => {
+//       console.log(images);
+//       res.json({ images, success: true });
+//     })
+//     .catch((err) => {
+//       res.json({ success: false });
+//     });
+// });
 
 router.get("/getSpecializationAndName", (req, res) => {
   doctors
@@ -207,5 +281,9 @@ router.get("/getSpecializationAndName", (req, res) => {
       res.json({ success: false });
     });
 });
+
+
+
+
 
 module.exports = router;
