@@ -11,6 +11,7 @@ import PatientSignup from "./pages/PatientSignup";
 import DoctorDashboard from "./pages/DoctorDashboard";
 import PatientDashboard from "./pages/PatientDashboard";
 import Logout from "./components/Logout";
+import GetAppointment from "./pages/GetAppointment";
 
 const App = () => {
  
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/doctordashboard" component={DoctorDashboard} />
           <Route path="/patientdashboard" component={PatientDashboard} />
           <Route path="/Logout" component={Logout} />
+          <Route path="/getAppointment" component={GetAppointment} />
         </Switch>
 
       <Footer/>
