@@ -2,6 +2,7 @@ import React from "react";
 import {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "./Button";
+import PrescriptionCard from "./PrescriptionCard";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +43,22 @@ const useStyles = makeStyles((theme) => ({
    
   },
   important: {
+    // position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexGrow: 1,
+    flexWrap: "wrap",
+    // backgroundColor: "#eeb7ba",
+  },
+  Head1: {
+    // backgroundColor: "#eeb7ba",
+    flexGrow: 1,
+    margin:"20px",
+    padding: "20px",
+   
+  },
+  important1: {
     // position: "relative",
     display: "flex",
     alignItems: "center",
@@ -137,19 +154,53 @@ const Prescription = () => {
   ])
   const [currentCategory, setCurrentCategory]=useState([]);
 
-  const [prescriptions, setPrescriptions] = useState([]);
+  const [prescriptions, setPrescriptions] = useState([
+    {
+      DoctorName: "Doctor",
+      Image: "./feature1.png",
+    },
+    {
+      DoctorName: "Doctor",
+      Image: "./feature1.png",
+    },
+    {
+      DoctorName: "Doctor",
+      Image: "./feature1.png",
+    },
+    {
+      DoctorName: "Doctor",
+      Image: "./feature1.png",
+    },
+    {
+      DoctorName: "Doctor",
+      Image: "./feature1.png",
+    },
+
+  ]);
 
   // const categories = ['A','B','C','D','E','F','G','H','I','J','K','L'];
 
-  const displayPrescriptionsHandler =(category)=>{
+  const setPrescriptionsHandler =(category)=>{
     setCurrentCategory(category);
+  }
+
+
+  const displayPrescriptionsHandler =prescription=>{
+    return (
+      <>
+      <PrescriptionCard
+      doctorName={prescription.DoctorName}
+      image={prescription.Image}
+     />
+      </>
+    );
   }
   const getcategory = category => {
     return (
       <>
       <Button
       name={category}
-      clicked={()=>displayPrescriptionsHandler(category)}/>
+      clicked={()=>setPrescriptionsHandler(category)}/>
       </>
     );
   };
@@ -166,6 +217,12 @@ const Prescription = () => {
       </div>
       <div className={classes.heading1}>
         {currentCategory}
+      </div>
+      <div className={classes.Head1}>
+        <div className={classes.important1}>
+        {prescriptions.map(prescription => displayPrescriptionsHandler(prescription))}
+
+        </div>
       </div>
     </>
   );

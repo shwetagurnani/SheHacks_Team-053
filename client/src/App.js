@@ -13,18 +13,17 @@ import PatientDashboard from "./pages/PatientDashboard";
 import Logout from "./components/Logout";
 import GetAppointment from "./pages/GetAppointment";
 import Features from "./pages/features/features";
-import AiTools from "./pages/AiTools/AiTools";
+import AiTools from "./pages/AiTools/AiTools.js";
 import Prescription from "./pages/features/prescription/Prescription";
 import Pcos from "./pages/AiTools/Pcos";
 import Cervical from "./pages/AiTools/Cervical";
 import BreastCancer from "./pages/AiTools/BreastCancer";
 const App = () => {
- 
   return (
     <>
-     <Router>
-     <Navbar />
-      <Switch>
+      <Router>
+        <Navbar />
+        <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/doctorlogin" component={DoctorLogin} />
           <Route path="/doctorsignup" component={DoctorSignup} />
@@ -35,7 +34,7 @@ const App = () => {
           <Route path="/Logout" component={Logout} />
           <Route path="/getAppointment" component={GetAppointment} />
           {/* <Route exact path="/chat" component={Chat} /> */}
-          
+
           <Route path="/features" component={Features} />
           <Route path="/aitools" component={AiTools} />
           <Route path="/prescription" component={Prescription} />
@@ -44,9 +43,8 @@ const App = () => {
           <Route path="/breastcancer" component={BreastCancer} />
         </Switch>
 
-      <Footer/>
-     </Router>
-      
+        <Footer />
+      </Router>
     </>
   );
 };
