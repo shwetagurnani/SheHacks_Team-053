@@ -193,12 +193,12 @@ const Navbar = () => {
       </MenuItem>
 
       <MenuItem>
-        <Link to="/" className={classes.menu}>
+        <Link to="/features" className={classes.menu}>
           features
         </Link>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
-        <Link to="/" className={classes.menu}>
+        <Link to="/aitools" className={classes.menu}>
           AI tools
         </Link>
       </MenuItem>
@@ -225,10 +225,10 @@ const Navbar = () => {
 
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
-                <Link to="/" className={classes.menu}>
+                <Link to="/features" className={classes.menu}>
                   features
                 </Link>
-                <Link to="/" className={classes.menu}>
+                <Link to="/aitools" className={classes.menu}>
                   AI tools
                 </Link>
                 <Link to="/logout" className={classes.menu}>
@@ -277,10 +277,10 @@ const Navbar = () => {
                 <Link to="/doctorlogin" className={classes.menu}>
                   Doctor Login
                 </Link>
-                <Link to="/" className={classes.menu}>
+                <Link to="/features" className={classes.menu}>
                   features
                 </Link>
-                <Link to="/" className={classes.menu}>
+                <Link to="/aitools" className={classes.menu}>
                   AI tools
                 </Link>
               </div>
