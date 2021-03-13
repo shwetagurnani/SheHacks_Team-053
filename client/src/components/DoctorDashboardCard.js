@@ -54,7 +54,7 @@ export default function OutlinedCard(props) {
   const handleReject = () => {
     const SendingRequest = async () => {
       try {
-        const response = await fetch("/doctor/changeStatus", {
+        const response = await fetch("http://localhost:3000/doctor/changeStatus", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +65,6 @@ export default function OutlinedCard(props) {
           }),
         });
         const responseData = await response.json();
-        console.log(responseData);
         history.go();
       } catch (err) {
         console.log(err);
