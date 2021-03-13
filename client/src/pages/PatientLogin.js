@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import {
   Grid,
@@ -21,6 +21,7 @@ import {
   withStyles,
   createMuiTheme,
 } from "@material-ui/core/styles";
+import { authContext } from "../components/context/Auth";
 
 const useStyles = makeStyles((theme) => ({
   BackgroundHead: {
@@ -98,6 +99,8 @@ const PatientLogin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
 
+  let { dispatch } = useContext(authContext);
+
   const handleLogin = (e) => {
     e.preventDefault();
     axios
@@ -106,6 +109,9 @@ const PatientLogin = (props) => {
         if (res.data.success) {
           console.log(res.data);
           localStorage.setItem("token", res.data.token);
+          dispatch({ type: "SET_ROLE", payload: "DOCTOR" });
+          dispatch({ type: "SET_USERID", payload: res.data.id });
+          dispatch({ type: "LOG_IN" });
           props.history.push("/patientdashboard");
         } else {
           console.log(res.data);

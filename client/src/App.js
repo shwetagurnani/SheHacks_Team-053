@@ -12,6 +12,7 @@ import DoctorDashboard from "./pages/DoctorDashboard";
 import PatientDashboard from "./pages/PatientDashboard";
 import Logout from "./components/Logout";
 import GetAppointment from "./pages/GetAppointment";
+import Chat from './components/chat/homepage'
 
 const App = () => {
  
@@ -29,6 +30,8 @@ const App = () => {
           <Route path="/patientdashboard" component={PatientDashboard} />
           <Route path="/Logout" component={Logout} />
           <Route path="/getAppointment" component={GetAppointment} />
+          {/* <Route exact path="/chat" component={Chat} /> */}
+          
         </Switch>
 
       <Footer/>
