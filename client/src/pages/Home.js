@@ -73,8 +73,46 @@ const useStyles = makeStyles((theme) => ({
   },
 
   features: {
-    height: "900px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexGrow: 1,
+    flexWrap: "wrap",
+    margin: theme.spacing(8, 8),
   },
+
+  image: {
+    margin: theme.spacing(8, 8),
+    height: 350,
+    width: 300,
+    [theme.breakpoints.up("md")]: {
+      height: "auto",
+      width: "auto",
+    },
+  },
+  para: {
+    margin: theme.spacing(.1, .1),
+    textAlign: "center",
+    maxWidth: "500px",
+    fontFamily: "Jost, sans-serif",
+    fontSize: "20px",
+    [theme.breakpoints.up("md")]: {
+      margin: theme.spacing(8, 8),
+    },
+  },
+text: {
+      
+    fontFamily: "Lobster, cursive",
+    color: "#d3454c",
+    fontSize: "20px",
+    letterSpacing: ".05em",
+    textAlign: "center",
+    // textShadow: "2px 2px 8px #404040",
+    [theme.breakpoints.up("md")]: {
+      fontSize: "80px",
+  
+  },
+}
 }));
 
 const Home = () => {
@@ -102,7 +140,25 @@ const Home = () => {
         </div>
       </div>
 
-      <div className={classes.features}>features</div>
+      <div className={classes.features}>
+        <img src="./features.png" alt="lady" className={classes.image} />
+        <div>
+          <div className={classes.text}>
+            About Us
+          </div>
+        <div className={classes.para}>
+          Our goal is to spread quality health services across women in this
+          world, such that they may attain the best possible level of health.
+          This is accomplished by our all-in-one women health platform, which
+          leverages AI to detect and diagnose women specific health issues and
+          thereby help raise awareness for its treatment and management. We are
+          fighting for those who are disadvantaged by discrimination rooted in
+          sociocultural factors, building a sense of trust and breaking the
+          stigma around femininity
+        </div>
+        </div>
+       
+      </div>
     </>
   );
 };
