@@ -70,6 +70,9 @@ const DoctorSchema = new Schema({
         type: Boolean, 
         default: false
     } ,
+    achievements: {
+        type: String,
+    },
     newchat: [{
         user_name : {
             type: String,
