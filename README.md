@@ -19,7 +19,7 @@ Predict if a person is susceptible to having AI based on her lifestyle choices a
 
 * Dedicated Dashboard for Patient and Doctor
 
-* Tracking medical history of the patient which will be made available to the doctor treating the patient
+* Tracking medical history of the patient along with previous suggested prescriptions which will be made available to the doctor treating the patient
 
 * List Suggested of registered gynaecologists/oncologists nearby the patient after a person has been diagnosed with a particular disease or ailment.
 
@@ -54,12 +54,12 @@ Predict if a person is susceptible to having AI based on her lifestyle choices a
 
 * For Doctor
 	
-	Username - doctor
+	Username - doctor , 
 	Password - doctor
 
 * For Patient
 
-	Username - patient
+	Username - patient , 
 	Password - patient
 
 ### Instructions to Install and Setup
@@ -87,7 +87,7 @@ shweta's (Mohan) work
 
 
 
-####PCOS
+#### PCOS
 
 Polycystic ovary syndrome (PCOS) is a hormonal disorder common among women of reproductive age. Women with PCOS may have infrequent or prolonged menstrual periods or excess male hormone (androgen) levels. The ovaries may develop numerous small collections of fluid (follicles) and fail to regularly release eggs.
 
@@ -106,14 +106,26 @@ Author links open overlay panelSteven EWaggonerMDa
 ### Refernces and Citations
 
 * Seminar Cervical cancer Author links open overlay panelSteven EWaggonerMDa
-
-
-net was slow,willl update later
-
+* Screening for Cervical Cancer David M. Eddy, MD, PhD
+* Automation of Detection of Cervical Cancer Using Convolutional Neural Networks Vidya Kudva Keerthana Prasad
+* The Epidemiology of Cervical Cancer Franco, Eduardo L. DrPHa; Schlecht, Nicolas F. PhDb; Saslow, Debbie PhDc
+* Applications of Artificial Intelligence Techniques in Polycystic ovarian syndrome Diagnosis V. Deepika
+* Study and detection of PCOS related diseases using CNN M Sumathi1, P Chitra1, R Sakthi Prabha1 and K Srilatha1
+* Endocrine Disruptors and Polycystic Ovary Syndrome (PCOS): Elevated Serum Levels of Bisphenol A in Women with PCOS  Eleni Kandaraki, Antonis Chatzigeorgiou, Sarantis Livadas, Eleni Palioura, Frangiscos Economou, Michael Koutsilieris, Sotiria Palimeri, Dimitrios Panidis, Evanthia Diamanti-Kandarakis
+* Access to Women's Health Care: A Qualitative Study of Barriers Perceived by Homeless Women
+Lillian Gelberg MD and MSPH,C. H. Browner PhD and MPH,Elena Lejano MD &Lisa Arangua MPP
+* A feminist model for women's health care Linda Andrist
 
 
 ### Screenshots
 
+![she_hacks4](https://user-images.githubusercontent.com/46062965/111055560-f4195e80-849c-11eb-8ad4-f34672cd77b4.jpeg)
+
+![she_hacks3](https://user-images.githubusercontent.com/46062965/111055558-f24f9b00-849c-11eb-9a2d-753062985cbc.jpeg)
+
+![she_hacks2](https://user-images.githubusercontent.com/46062965/111055555-ef54aa80-849c-11eb-8107-abb9c6528a86.jpeg)
+
+![she_hacks](https://user-images.githubusercontent.com/46062965/111055551-ec59ba00-849c-11eb-976f-942a7c5589ac.jpeg)
 
 
 
