@@ -11,10 +11,10 @@ We also aim to fight the social stigma assosciated with these women-specific hea
 
 ### Features
 
-* # Cervical Cancer Prediction :
+* ##### Cervical Cancer Prediction :
 Predict if a person has Cervical cancer based on patient's demographic needs, Medical history and his habits
 
-* # Predict PCOS :
+* ##### Predict PCOS :
 Predict if a person is susceptible to having AI based on her lifestyle choices and medical history.
 
 * Dedicated Dashboard for Patient and Doctor
