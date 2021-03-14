@@ -64,22 +64,25 @@ Predict if a person is susceptible to having AI based on her lifestyle choices a
 
 ### Instructions to Install and Setup
 
+#### Download the Zip or clone the repository using command : 
+
 git clone https://github.com/shwetagurnani/SheHacks_Team-053.git
 
-Open One terminal and enter following commands
+#### Open One terminal and enter following commands
 
 cd server
+
 npm install
+
 npm start
 
-Open Second terminal  and enter following commands
+#### Open Second terminal  and enter following commands
 
 cd client
+
 npm install
+
 npm start
-
-
-
 
 
 
