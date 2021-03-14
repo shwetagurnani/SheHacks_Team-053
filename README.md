@@ -108,19 +108,9 @@ The proposed model has been fitted by k-fold cross validation and the model has 
 
 #### PCOS
 
-Polycystic ovary syndrome (PCOS) is a hormonal disorder common among women of reproductive age. Women with PCOS may have infrequent or prolonged menstrual periods or excess male hormone (androgen) levels. The ovaries may develop numerous small collections of fluid (follicles) and fail to regularly release eggs.
-
-The exact cause of PCOS is unknown. Early diagnosis and treatment along with weight loss may reduce the risk of long-term complications such as type 2 diabetes and heart disease.
-
-Symptoms of PCOS include Irregular periods, excess androgen and polycystic ovaries
-
-
-
-Shweta's work (Mohan)
-Seminar
-Cervical cancer
-Author links open overlay panelSteven EWaggonerMDa
-
+Polycystic ovary syndrome (PCOS) is a condition that affects a woman's hormone levels.1 out of every 5 women suffer from PCOS.The cause of polycystic ovary syndrome isn't well understood, but may involve a combination of genetic and environmental factors.Still there is lack of awareness among women about PCOS and it is not detected until they are taken to a doctor.
+The dataset obtained uses various factors like age,irregular periods,frequency of exercising etc. to predict the risk of PCOS.The given dataset contains 22 features.The categorical values have been converted to binary values as a part of preprocessing and various machine learning techniques like Decision Tree,SVM,Naive Bayes,Random Forest,KNN have been tried and voting ensemble(which uses a combination of Machine learning algorithms- SVM,Decision Tree,Naive Bayse,logistic regression and KNN)was found out to be the best.
+The model has an accuracy of 78%.
 
 ### Refernces and Citations
 
