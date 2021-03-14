@@ -225,21 +225,21 @@ const fileFilter = (req, file, cb) => {
 
 let upload = multer({ storage, fileFilter });
 
-router.route("/add").post(upload.single("img"), (req, res) => {
+router.route("/add").post(upload.single("img"), verifyToken, (req, res) => {
   const name = req.body.name;
   const spec = req.body.spec;
   const show = req.body.show;
   const photo = req.file.filename;
-  
+  let patientId = req.userId;
+
   const newPresData = {
     show: show,
     doctor_specialization: spec,
     doctor_name: name,
     img: photo,
+    patient_id: patientId
   };
-
   const newPres = new prescription(newPresData);
-
   newPres
     .save()
     .then((result) => res.json(result))
@@ -255,7 +255,40 @@ router.get("/display", (req, res) => {
   });
 });
 
+router.get("/getPatientPrescription",  (req, res) => {
+  const specialization = req.params.specialization;
+  prescription
+    .find({})
+    .then((pres) => {
+      var response = {};
+      for (var i = 0; i < pres.length; i++) {
+        var specialization = pres[i].doctor_specialization;
+        if (specialization in response) {
+          response[specialization].push(pres[i]);
+        } else {
+          response[specialization] = [];
+          response[specialization].push(pres[i]);
+        }
+      }
+      console.log(response);
+      res.json({ success: true, response });
+    })
+    .catch((err) => {
+      res.json({ success: false });
+    });
+});
 
+router.get("/getPatientPrescription/:specialization",  (req, res) => {
+  const specialization = req.params.specialization;
+  prescription
+    .find({doctor_specialization: specialization})
+    .then((response) => {
+      res.json({ success: true, response });
+    })
+    .catch((err) => {
+      res.json({ success: false });
+    });
+});
 
 router.post("/postAppointment", verifyToken, (req, res) => {
   let patientId = req.userId;
