@@ -81,9 +81,14 @@ Cervical cancer is a cancer arising from the cervix. It is due to the abnormal g
 
 Worldwide, cervical cancer is both the fourth-most common cause of cancer and the fourth-most common cause of death from cancer in women. In 2012, an estimated 528,000 cases of cervical cancer occurred, with 266,000 deaths. This is about 8% of the total cases and total deaths from cancer. About 70% of cervical cancers and 90% of deaths occur in developing countries.
 
+The dataset for the Cervical cancer prediction is obtained from [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Cervical+cancer+%28Risk+Factors%29).The dataset contains features about various parameters like age,years of smoking etc.and also uses the presence of other diseases like Sexually Transmitted diseases(STD),HIV etc.
+The data set obtained has 32 features for classification and 4 classifications on the basis of prediction from each of the 4 tests,namely,Hinselmann,Schiller,Cytology,biopsy.
 
-shweta's (Mohan) work
+The data has been preprocessed by replacing the unknown values with the mean an the most important features for prediction was obtained by various plots.
+Various machine learning models were like SVM,Logistic regression and Random Forest Classifier were tried out and Random forest classifier was found out to be the best model.The parameters for the model was found out by hyperparameter tuning.
+For prediction,we used the aggregated results of all the 4 tests and even if one of the test predicts that the user suffers from cervical cancer,the model predicts cervical cancer.
 
+The proposed model has been fitted by k-fold cross validation and the model has an accuracy of 94%.
 
 
 
