@@ -181,7 +181,7 @@ router.get("/getSpecialization", (req, res) => {
 router.get("/getDoctors/:category", (req, res) => {
   const category = req.params.category;
 
-    doctors.find({}).then((response) => {
+    doctors.find({specialization: category}).then((response) => {
       res.json({ success: true, response });
     })
     .catch((err) => {
