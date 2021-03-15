@@ -158,9 +158,9 @@ Lillian Gelberg MD and MSPH,C. H. Browner PhD and MPH,Elena Lejano MD &Lisa Aran
 
 ### Team Members
 
-* Niti 
-* Shreya
-* Shweta Gurnani
-* Shweta Mohan 
+* Niti [Niti Kaur](https://github.com/Niti-Kaur)
+* Shreya [Shreya Agarwal](https://github.com/shreyaag770)
+* Shweta Gurnani [Shweta Gurnani](https://github.com/shwetagurnani)
+* Shweta Mohan [Swetha Mohan](https://github.com/swethamohan1)
 
 
