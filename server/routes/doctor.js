@@ -38,23 +38,23 @@ const fileFilter = (req, file, cb) => {
 let upload = multer({ storage, fileFilter });
 
 router.route("/add").post(upload.single("img"), (req, res) => {
-  // const name = req.body.name;
-  // const praise = req.body.praise;
-  // const highFive = req.body.highFive;
+  const name = req.body.name;
+  const spec = req.body.spec;
+  const show = req.body.show;
   const photo = req.file.filename;
+  // let patientId = req.userId;
 
   const newPresData = {
-    // name,
-    // praise,
-    // highFive,
+    show: show,
+    doctor_specialization: spec,
+    doctor_name: name,
     img: photo,
+    // patient_id: patientId
   };
-
   const newPres = new prescription(newPresData);
-
   newPres
     .save()
-    .then(() => res.json("Prescription Added"))
+    .then((result) => res.json(result))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 

@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { Typography } from "@material-ui/core";
 // import BackgroundHeader from "./public/Bg1.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -157,6 +158,90 @@ const useStyles = makeStyles((theme) => ({
 const Pcos = () => {
   const classes = useStyles();
 
+
+  // States of PCOS Page
+  const [age,setAge] = useState("");
+  const [chin,setChin] = useState("");
+  const [cheeks,setCheeks] = useState("");
+  const [lips,setLips] = useState("");
+  const [breast,setBreast] = useState("");
+  const [arms,setArms] = useState("");
+  const [thigh,setThigh] = useState("");
+  const [exercise,setExercise] = useState("");
+  const [eat,setEat] = useState("");
+  const [pcos,setPcos] = useState("");
+  const [bmi,setBmi] = useState("");
+  const [check,setCheck] = useState(0);
+  const [weight,setWeight] = useState("");
+  const [period,setPeriod] = useState("");
+  const [concieve,setConcieve] = useState("");
+  const [skin,setSkin] = useState("");
+  const [hairthin,setHairthin] = useState("");
+  const [patch,setPatch] = useState("");
+  const [tired,setTired] = useState("");
+  const [mood,setMood] = useState("");
+  const [can,setCan] = useState("");
+  const [city,setCity] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    var ageCheck = parseInt(age);
+    if (age - '0' > 21) {
+      setCheck(1);
+      console.log("satyam")
+    } else {
+      setCheck(2);
+      console.log("shreya") 
+    }
+
+    const sendingRequest = async () => {
+        try{
+          const response = await fetch(`http://ec2-3-134-252-133.us-east-2.compute.amazonaws.com:8000/api/pcos/`, {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Token 6cfe472c768bd06aa98e52a9bc41e41248eb4b92"
+            },
+            body: JSON.stringify({
+              "age": "4",
+              "Chin": "3",
+              "Cheeks": "3",
+              "Lips": "4",
+              "Breast": "2",
+              "Arms": "1",
+              "Thigh": "9",
+              "Exercise": "8",
+              "Eat": "1",
+              "PCOS": "Yes",
+              "BMI": "Yes",
+              "Weight": "Yes",
+              "Period": "Yes",
+              "Concieve": "Yes",
+              "Skin": "Yes",
+              "Hairthin": "Yes",
+              "Patch": "Yes",
+              "Tired": "Yes",
+              "Mood": "Yes",
+              "Can": "Yes",
+              "City": "Yes"
+          })
+          });
+          const responseData = await response.json();
+          if(!response.report)
+          {
+              console.log("error")
+          }
+          console.log(responseData);
+        } catch(err)
+        {
+          console.log("Error");
+        }
+    };
+    sendingRequest();
+  }
+
+
   return (
     <>
       <div className={classes.heading}>PCOS Detection</div>
@@ -187,7 +272,7 @@ const Pcos = () => {
                 required
                 type="number"
                 min="0"
-                
+                onChange = { (e) => {setAge(e.target.value)}}
                 className={classes.textField}
               />
             </div>
@@ -201,6 +286,7 @@ const Pcos = () => {
                 type="number"
                 min="1"
                 max="5"
+                onChange = { (e) => {setChin(e.target.value)}}
                 className={classes.textField}
               />
             </div>
@@ -213,6 +299,7 @@ const Pcos = () => {
                 type="number"
                 min="1"
                 max="5"
+                onChange = { (e) => {setCheeks(e.target.value)}}
                 className={classes.textField}
               />
             </div>
@@ -226,6 +313,7 @@ const Pcos = () => {
                 type="number"
                 min="1"
                 max="5"
+                onChange = { (e) => {setLips(e.target.value)}}
                 className={classes.textField}
               />
             </div>
@@ -239,6 +327,8 @@ const Pcos = () => {
                 type="number"
                 min="1"
                 max="5"
+                onChange = { (e) => {setBreast(e.target.value)}}
+
                 className={classes.textField}
               />
             </div>
@@ -251,6 +341,7 @@ const Pcos = () => {
                 type="number"
                 min="1"
                 max="5"
+                onChange = { (e) => {setArms(e.target.value)}}
                 className={classes.textField}
               />
             </div>
@@ -263,6 +354,7 @@ const Pcos = () => {
                 type="number"
                 min="1"
                 max="5"
+                onChange = { (e) => {setThigh(e.target.value)}}
                 className={classes.textField}
               />
             </div>
@@ -274,6 +366,7 @@ const Pcos = () => {
                 required
                 type="number"
                 min="0"
+                onChange = { (e) => {setExercise(e.target.value)}}
                 className={classes.textField}
               />
             </div>
@@ -285,23 +378,24 @@ const Pcos = () => {
                 required
                 type="number"
                 min="0"
+                onChange = { (e) => {setEat(e.target.value)}}
                 className={classes.textField}
               />
             </div>
             <div className={classes.form}>
               <h3 className={classes.text}>Have you been diagnozed with PCOS before?:</h3>
-              <input required type="radio" id="yes" name="pcos" value="yes" />
+              <input required type="radio" id="yes" name="pcos" value="Yes" onChange = {(e) => {setPcos(e.target.value)}} />
               <label for="yes">Yes</label>
-              <input required type="radio" id="no" name="pcos" value="no" />
+              <input required type="radio" id="no" name="pcos" value="No" onChange = {(e) => {setPcos(e.target.value)}} />
               <label for="no">No</label>
             </div>
             <div className={classes.form}>
               <h3 className={classes.text}>
                 Were you overweight according to your BMI (Body Mass Index) ?
               </h3>
-              <input required type="radio" id="yes" name="bmi" value="yes" />
+              <input required type="radio" id="yes" name="bmi" value="Yes" onChange = {(e) => {setBmi(e.target.value)}} />
               <label for="yes">Yes</label>
-              <input required type="radio" id="no" name="bmi" value="no" />
+              <input required type="radio" id="no" name="bmi" value="No" onChange = {(e) => {setBmi(e.target.value)}} />
               <label for="no">No</label>
             </div>
             <div className={classes.form}>
@@ -309,40 +403,40 @@ const Pcos = () => {
                 Have you experienced significant or rapid weight gain and faced
                 difficulty in losing it ?:
               </h3>
-              <input required type="radio" id="yes" name="weight" value="yes" />
+              <input required type="radio" id="yes" name="weight" value="Yes" onChange = {(e) => {setWeight(e.target.value)}} />
               <label for="yes">Yes</label>
-              <input required type="radio" id="no" name="weight" value="no" />
+              <input required type="radio" id="no" name="weight" value="No" onChange = {(e) => {setWeight(e.target.value)}} />
               <label for="no">No</label>
             </div>
             <div className={classes.form}>
               <h3 className={classes.text}>
                 Have you experienced irregular or missed periods ? :
               </h3>
-              <input required type="radio" id="yes" name="period" value="yes" />
+              <input required type="radio" id="yes" name="period" value="Yes" onChange = {(e) => {setPeriod(e.target.value)}} />
               <label for="yes">Yes</label>
-              <input required type="radio" id="no" name="period" value="no" />
+              <input required type="radio" id="no" name="period" value="No" onChange = {(e) => {setPeriod(e.target.value)}} />
               <label for="no">No</label>
             </div>
             <div className={classes.form}>
               <h3 className={classes.text}>Difficulty in conceiving ?:</h3>
-
               <input
                 required
                 type="radio"
                 id="yes"
                 name="concieve"
-                value="yes"
+                value="Yes"
+                onChange = {(e) => {setConcieve(e.target.value)}}
               />
               <label for="yes">Yes</label>
-              <input required type="radio" id="no" name="concieve" value="no" />
+              <input required type="radio" id="no" name="concieve" value="No" onChange = {(e) => {setConcieve(e.target.value)}} />
               <label for="no">No</label>
             </div>
             <div className={classes.form}>
               <h3 className={classes.text}>Acne or skin tags problem ?:</h3>
 
-              <input required type="radio" id="yes" name="skin" value="yes" />
+              <input required type="radio" id="yes" name="skin" value="Yes" onChange = {(e) => {setSkin(e.target.value)}} />
               <label for="yes">Yes</label>
-              <input required type="radio" id="no" name="skin" value="no" />
+              <input required type="radio" id="no" name="skin" value="No" onChange = {(e) => {setSkin(e.target.value)}} />
               <label for="no">No</label>
             </div>
             <div className={classes.form}>
@@ -355,10 +449,11 @@ const Pcos = () => {
                 type="radio"
                 id="yes"
                 name="hairthin"
-                value="yes"
+                value="Yes"
+                onChange = {(e) => {setHairthin(e.target.value)}}
               />
               <label for="yes">Yes</label>
-              <input required type="radio" id="no" name="hairthin" value="no" />
+              <input required type="radio" id="no" name="hairthin" value="No" onChange = {(e) => {setHairthin(e.target.value)}} />
               <label for="no">No</label>
             </div>
             <div className={classes.form}>
@@ -366,9 +461,9 @@ const Pcos = () => {
                 Dark patches on the back of your neck or underarms ?:
               </h3>
 
-              <input required type="radio" id="yes" name="patch" value="yes" />
+              <input required type="radio" id="yes" name="patch" value="Yes" onChange = {(e) => {setPatch(e.target.value)}} />
               <label for="yes">Yes</label>
-              <input required type="radio" id="no" name="patch" value="no" />
+              <input required type="radio" id="no" name="patch" value="No" onChange = {(e) => {setPatch(e.target.value)}} />
               <label for="no">No</label>
             </div>
             <div className={classes.form}>
@@ -376,9 +471,9 @@ const Pcos = () => {
                 Feeling of tiredness all the time ?:
               </h3>
 
-              <input required type="radio" id="yes" name="tired" value="yes" />
+              <input required type="radio" id="yes" name="tired" value="Yes" onChange = {(e) => {setTired(e.target.value)}} />
               <label for="yes">Yes</label>
-              <input required type="radio" id="no" name="tired" value="no" />
+              <input required type="radio" id="no" name="tired" value="No" onChange = {(e) => {setTired(e.target.value)}} />
               <label for="no">No</label>
             </div>
             <div className={classes.form}>
@@ -386,9 +481,9 @@ const Pcos = () => {
                 Mood Swings more often than usual ?:
               </h3>
 
-              <input required type="radio" id="yes" name="mood" value="yes" />
+              <input required type="radio" id="yes" name="mood" value="Yes" onChange = {(e) => {setMood(e.target.value)}} />
               <label for="yes">Yes</label>
-              <input required type="radio" id="no" name="mood" value="no" />
+              <input required type="radio" id="no" name="mood" value="No" onChange = {(e) => {setMood(e.target.value)}} />
               <label for="no">No</label>
             </div>
             <div className={classes.form}>
@@ -396,14 +491,15 @@ const Pcos = () => {
                 Did you consume canned food more often ?:
               </h3>
 
-              <input required type="radio" id="yes" name="can" value="yes" />
+              <input required type="radio" id="yes" name="can" value="Yes" onChange = {(e) => {setCan(e.target.value)}} />
               <label for="yes">Yes</label>
               <input
                 required
                 type="radio"
                 id="no"
                 name="can"
-                value="no"
+                value="No"
+                onChange = {(e) => {setCan(e.target.value)}}
                
               />
               <label for="no">No</label>
@@ -420,7 +516,7 @@ const Pcos = () => {
                 id="yes"
                 name="city"
                 value="yes"
-               
+                onChange = {(e) => {setCity(e.target.value)}}
               />
               <label for="yes">Yes</label>
               <input
@@ -429,7 +525,7 @@ const Pcos = () => {
                 id="no"
                 name="city"
                 value="no"
-                
+                onChange = {(e) => {setCity(  e.target.value)}}
               />
               <label for="no">No</label>
             </div>
@@ -439,7 +535,11 @@ const Pcos = () => {
                 type="submit"
                 value="Predict PCOS Possibility"
                 className={classes.button}
+                onClick = {submitHandler}
               />
+            </div>
+            <div className={classes.heading}>
+              {check == 0 ? null : check == 1 ? <div><h1>Yes</h1></div> : <div><h1>No</h1></div>}
             </div>
           </div>
         </form>

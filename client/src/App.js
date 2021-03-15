@@ -18,9 +18,7 @@ import Prescription from "./pages/features/prescription/Prescription";
 import Pcos from "./pages/AiTools/Pcos";
 import Cervical from "./pages/AiTools/Cervical";
 import BreastCancer from "./pages/AiTools/BreastCancer";
-import NewPrescriptionDoctor from "./pages/NewPrescriptionDoctor";
-import NewPrescriptionPatient from "./pages/NewPrescriptionPatient";
-
+import DoctorList from "./pages/features/DoctorList/DoctorList";
 const App = () => {
   return (
     <>
@@ -36,14 +34,23 @@ const App = () => {
           <Route path="/patientdashboard" component={PatientDashboard} />
           <Route path="/Logout" component={Logout} />
           <Route path="/getAppointment" component={GetAppointment} />
+          {/* <Route exact path="/chat" component={Chat} /> */}
+
           <Route path="/features" component={Features} />
           <Route path="/aitools" component={AiTools} />
           <Route path="/prescription" component={Prescription} />
           <Route path="/pcos" component={Pcos} />
           <Route path="/cervical" component={Cervical} />
           <Route path="/breastcancer" component={BreastCancer} />
-          <Route path="/uploadPrescriptionDoctor" component={NewPrescriptionDoctor} />
-          <Route path="/uploadPrescriptionPatient" component={NewPrescriptionPatient} />
+          <Route path="/doctorlist" component={DoctorList} />
+          <Route
+            path="/uploadPrescriptionDoctor"
+            component={NewPrescriptionDoctor}
+          />
+          <Route
+            path="/uploadPrescriptionPatient"
+            component={NewPrescriptionPatient}
+          />
         </Switch>
 
         <Footer />

@@ -11,6 +11,7 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import DashboardCard from "../components/DoctorDashboardCard";
+import { Link } from "react-router-dom";
 
 import { useHistory } from "react-router-dom";
 
@@ -91,12 +92,15 @@ const Application = (props) => {
   useEffect(() => {
     const SendingRequest = async () => {
       try {
-        const response = await fetch("http://localhost:3000/doctor/getAllAppointment", {
-          headers: {
-            "x-access-token": localStorage.getItem("token"),
-          },
-          method: 'GET'
-        });
+        const response = await fetch(
+          "http://localhost:3000/doctor/getAllAppointment",
+          {
+            headers: {
+              "x-access-token": localStorage.getItem("token"),
+            },
+            method: "GET",
+          }
+        );
         const responseData = await response.json();
         console.log(responseData.appointment);
         let temp1 = [];
@@ -117,7 +121,7 @@ const Application = (props) => {
         setAcceptSize(temp2.length);
         setRejectSize(temp3.length);
       } catch (err) {
-          console.log("hey error")
+        console.log("hey error");
         console.log(err);
       }
     };
@@ -127,10 +131,14 @@ const Application = (props) => {
   return (
     <div className={classes.root}>
       <Toolbar />
+      <Link to="/uploadPrescriptionDoctor">
+        <Button>Write a Prescription</Button>
+      </Link>
       <Grid container className={classes.main}>
         <Grid item xs={12} lg={4}>
           <React.Fragment>
             <CssBaseline />
+
             <ElevationScroll {...props}>
               <AppBar className={classes.AppBar}>
                 <Toolbar className={classes.AppBarContent}>

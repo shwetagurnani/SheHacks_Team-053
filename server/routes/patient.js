@@ -225,19 +225,19 @@ const fileFilter = (req, file, cb) => {
 
 let upload = multer({ storage, fileFilter });
 
-router.route("/add").post(upload.single("img"), verifyToken, (req, res) => {
+router.route("/add").post(upload.single("img"), (req, res) => {
   const name = req.body.name;
   const spec = req.body.spec;
   const show = req.body.show;
   const photo = req.file.filename;
-  let patientId = req.userId;
+  // let patientId = req.userId;
 
   const newPresData = {
     show: show,
     doctor_specialization: spec,
     doctor_name: name,
     img: photo,
-    patient_id: patientId
+    // patient_id: patientId
   };
   const newPres = new prescription(newPresData);
   newPres

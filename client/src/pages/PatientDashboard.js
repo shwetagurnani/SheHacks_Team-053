@@ -11,6 +11,7 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import DashboardCard from "../components/PatientDashboardCard";
+import { Link } from "react-router-dom";
 
 import { useHistory } from "react-router-dom";
 
@@ -143,6 +144,9 @@ const Application = (props) => {
       >
         Chat
       </Button> */}
+       <Link to = '/uploadPrescriptionPatient'>
+        <Button className={classes.button}>Upload A Prescription</Button>
+        </Link>
       <Grid container className={classes.main}>
         <Grid item xs={12} lg={4}>
           <React.Fragment>

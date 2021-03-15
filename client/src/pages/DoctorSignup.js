@@ -205,7 +205,8 @@
 
 // export default Signup;
 
-import React from "react";
+import React,{useState} from "react";
+import axios from "axios";
 import {
   Grid,
   Paper,
@@ -241,9 +242,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       height: 700,
     },
-
-    //  margin: 24,
-    //  padding: 24,
   },
 
   extra: {
@@ -310,12 +308,57 @@ const useStyles = makeStyles((theme) => ({
 }));
 const DoctorSignup = () => {
   const classes = useStyles();
+
+  // register state
+  const [username,setUsername] = useState("");
+  const [email,setEmail] = useState("");
+  const [address,setAddress] = useState("");
+  const [req,setReqNo] = useState("");
+  const [hos,setHos] = useState("");
+  const [speci,setSpeci] = useState("");
+  const [contact,setContact] = useState("");
+  const [password,setPassword] = useState("");
+  const [confirmPassword,setConfirmPassword] = useState("");
+  const [achievement,setAchievement] = useState("");
+
   const paperStyle = {
     padding: 20,
     height: "70vh",
     width: 280,
     margin: "20px auto",
   };
+
+  const submitHandler = (e) => {
+    console.log("sucess");
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:3000/doctor/register", {
+                  "name":username,
+                  "email":email,
+                  "password":password,
+                  "password2":confirmPassword,
+                  "phone":contact,
+                  "reg_num":req,
+                  "address":address,
+                  "specialization":speci,
+                  "hospital_name":hos,
+                  "achievements":achievement
+              })
+      .then((res) => {
+        if (res.data.success) {
+          console.log(res.data);
+          localStorage.setItem("token", res.data.token);
+          // dispatch({ type: "SET_ROLE", payload: "DOCTOR" });
+          // dispatch({ type: "SET_USERID", payload: res.data.id });
+          // dispatch({ type: "LOG_IN" });
+          // props.history.push("/doctordashboard");
+        } else {
+          console.log(res.data);
+          // props.history.push("/doctologin");
+        }
+      });
+  }
 
   const btnstyle = { margin: "8px 0" };
   return (
@@ -332,6 +375,7 @@ const DoctorSignup = () => {
               id="outlined-basic"
               label="Usename"
               variant="outlined"
+              onChange = {(e) => {setUsername(e.target.value)}}
               className={classes.field}
             />
             <TextField
@@ -339,30 +383,35 @@ const DoctorSignup = () => {
               label="Email"
               variant="outlined"
               className={classes.field}
+              onChange = {(e) => {setEmail(e.target.value)}}
             />
              <TextField
               id="outlined-basic"
               label="Address"
               variant="outlined"
               className={classes.field}
+              onChange = {(e) => {setAddress(e.target.value)}}
             />
               <TextField
               id="outlined-basic"
               label="Registration Number"
               variant="outlined"
               className={classes.field}
+              onChange = {(e) => {setReqNo(e.target.value)}}
             />
               <TextField
               id="outlined-basic"
               label="Hospital name"
               variant="outlined"
               className={classes.field}
+              onChange = {(e) => {setHos(e.target.value)}}
             />
               <TextField
               id="outlined-basic"
               label="specialization"
               variant="outlined"
               className={classes.field}
+              onChange = {(e) => {setSpeci(e.target.value)}}
             />
             
             <TextField
@@ -370,6 +419,7 @@ const DoctorSignup = () => {
               label="contact Number"
               variant="outlined"
               className={classes.field}
+              onChange = {(e) => {setContact(e.target.value)}}
             />
             
             <TextField
@@ -378,13 +428,23 @@ const DoctorSignup = () => {
               variant="outlined"
               type="password"
               className={classes.field}
+              onChange = {(e) => {setPassword(e.target.value)}}
             />
             <TextField
               id="outlined-basic"
-              label="Password"
+              label="Confirm Password"
               variant="outlined"
               type="password"
               className={classes.field}
+              onChange = {(e) => {setConfirmPassword(e.target.value)}}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Achievement"
+              variant="outlined"
+              type="text"
+              className={classes.field}
+              onChange = {(e) => {setAchievement(e.target.value)}}
             />
 
             <Link href="/">
@@ -393,6 +453,7 @@ const DoctorSignup = () => {
                 variant="contained"
                 className={classes.btnstyle}
                 fullWidth
+                onClick= {submitHandler}
               >
                 Sign Up As Doctor
               </Button>

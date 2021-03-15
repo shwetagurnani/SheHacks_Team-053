@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const NewPrescription = () => {
   const [newPres, setNewPres] = useState({
@@ -79,7 +80,6 @@ const NewPrescription = () => {
         onChange={handleChange}
       />
       <label for="no">No</label>
-
       <input type="submit" />
     </form>
   );

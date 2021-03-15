@@ -1,15 +1,12 @@
 import React from "react";
 import {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button1 from "./Button";
-// import Button from "./Button";
-import PrescriptionCard from "./PrescriptionCard";
-import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import Button from "../prescription/Button";
+import DoctorCard from "./DoctorCard";
+
 
 const useStyles = makeStyles((theme) => ({
   BackgroundHead: {
-   
     height: 400,
     backgroundSize: "cover",
     backgroundPosition: "center",
@@ -149,63 +146,65 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Prescription = () => {
+const DoctorList = () => {
   const classes = useStyles();
+
   const [categories, setCategories] = useState([])
   const [currentCategory, setCurrentCategory]=useState([]);
+  const [doctorlist,setDoctorlist] = useState([]);
 
   useEffect(() => {
-    console.log("say",localStorage.getItem('token'));
     const sendingRequest = async () => {
         try{
-          const response = await fetch(`http://localhost:3000/patient/getPatientPrescription`, {
+          const response = await fetch(`http://localhost:3000/doctor/getSpecialization`, {
             headers: {
                 "Content-Type": "application/json",
-                "x-access-token": localStorage.getItem('token')
-                // "Authorization": "Token 6cfe472c768bd06aa98e52a9bc41e41248eb4b92"
+                "Authorization": "Token 6cfe472c768bd06aa98e52a9bc41e41248eb4b92"
             }
           });
           const res = await response.json();
-          console.log(res);
           setCategories(Object.keys(res.response));
         } catch(err){
-            console.log("Error",err);
+            console.log(err);
         }
       };
       sendingRequest();
   }, [])
 
-  const [prescriptions, setPrescriptions] = useState([]);
+  const [Doctors, setDoctors] = useState([]);
 
   // const categories = ['A','B','C','D','E','F','G','H','I','J','K','L'];
 
-  const setPrescriptionsHandler =(category)=>{
+  const setDoctorsHandler =(category)=>{
+    console.log(category)
     const sendingRequest2 = async () => {
-      try{
-        const response = await fetch(`http://localhost:3000/patient/getPatientPrescription/${category}`, {
-          headers: {
-              "Content-Type": "application/json",
-              "Authorization": "Token 6cfe472c768bd06aa98e52a9bc41e41248eb4b92"
-          }
-        });
-      const res = await response.json();
-      console.log(res.response);
-      setPrescriptions(res.response)
-      } catch(err){
-          console.log(err);
-      }
-    };
+        try{
+          const response = await fetch(`http://localhost:3000/doctor/getDoctors/${category}`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Token 6cfe472c768bd06aa98e52a9bc41e41248eb4b92"
+            }
+          });
+        const res = await response.json();
+        console.log(res.response);
+        setDoctors(res.response)
+        } catch(err){
+            console.log(err);
+        }
+      };
     sendingRequest2();
+
     setCurrentCategory(category);
   }
 
 
-  const displayPrescriptionsHandler = prescription=>{
+  const displayDoctorsHandler = Doctor=>{
     return (
       <>
-      <PrescriptionCard
-      doctorName={prescription.doctor_name}
-      image={prescription.img}
+      <DoctorCard
+      doctorName={Doctor.name}
+      achivements={Doctor.achievements}
+      registration={Doctor.reg_num}
      />
       </>
     );
@@ -213,9 +212,9 @@ const Prescription = () => {
   const getcategory = category => {
     return (
       <>
-      <Button1
+      <Button
       name={category}
-      clicked={()=>setPrescriptionsHandler(category)}/>
+      clicked={()=>setDoctorsHandler(category)}/>
       </>
     );
   };
@@ -223,7 +222,7 @@ const Prescription = () => {
   return (
     <>
       
-      <div className={classes.heading}>Categories</div>
+      <div className={classes.heading}>Health Experts</div>
       <div className={classes.Head}>
         <div className={classes.important}>
         {categories.map(category => getcategory(category))}
@@ -235,13 +234,12 @@ const Prescription = () => {
       </div>
       <div className={classes.Head1}>
         <div className={classes.important1}>
-        {prescriptions.map(prescription => displayPrescriptionsHandler(prescription))}
+        {Doctors.map(Doctor => displayDoctorsHandler(Doctor))}
 
         </div>
-       
       </div>
     </>
   );
 };
 
-export default Prescription;
+export default DoctorList;

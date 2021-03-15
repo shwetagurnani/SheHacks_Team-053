@@ -1,7 +1,8 @@
 import React from "react";
-import {Link} from "@material-ui/core";
+// import {Link} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 // import BackgroundHeader from "./public/Bg1.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
   Head: {
     // backgroundColor: "#eeb7ba",
     flexGrow: 1,
-   
   },
   important: {
     // position: "relative",
@@ -65,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px",
     boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19)",
     // backgroundColor: "#eeb7ba",
-
   },
   heading: {
     fontFamily: "Lobster, cursive",
@@ -102,7 +101,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       fontSize: "20px",
       marginTop: "20px",
-      
     },
   },
   button: {
@@ -160,11 +158,18 @@ const Features = () => {
                 facilities according to your location as well as video call
                 consultation from experts across the globe.
               </div>
-              <Link href="/prescription">
+              {/* <Link href="/prescription">
               <Button className={classes.button} variant="contained">
                 Manage Now
               </Button>
-              </Link>
+              </Link> */}
+              <Button
+                href="/prescription"
+                className={classes.button}
+                variant="contained"
+              >
+                Manage Now
+              </Button>
             </div>
           </div>
           <div className={classes.feature}>
@@ -202,9 +207,11 @@ const Features = () => {
                 facilities according to your location as well as video call
                 consultation from experts across the globe.
               </div>
-              <Button className={classes.button} variant="contained">
-                Book Now
-              </Button>
+              <Link to="/getAppointment">
+                <Button className={classes.button} variant="contained">
+                  Book Now
+                </Button>
+              </Link>
             </div>
           </div>
           <div className={classes.feature}>
@@ -214,7 +221,7 @@ const Features = () => {
                 alt="lady"
                 className={classes.BackgroundHead1}
               ></img> */}
-              <div className={classes.heading1}>Menstrual Cycle Tracker</div>
+              <div className={classes.heading1}>Know About Our Experts</div>
               <div className={classes.subHeading}>
                 We put together an array of dedicated and skilled experts to
                 assist you out of every hurdle you make come across, in a
@@ -222,9 +229,11 @@ const Features = () => {
                 facilities according to your location as well as video call
                 consultation from experts across the globe.
               </div>
-              <Button className={classes.button} variant="contained">
-                Track Now
-              </Button>
+              <Link to="/doctorlist" style={{ textDecoration: "none" }}>
+                <Button variant="contained" className={classes.button}>
+                  Check Now
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

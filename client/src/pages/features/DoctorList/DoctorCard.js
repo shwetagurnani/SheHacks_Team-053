@@ -2,7 +2,6 @@ import React from "react";
 import {Link} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-// import Image from '../../../../../server/images/6a1bd308-54b9-42f0-b194-a677140d0b9f-1615676046703.png';
 // import BackgroundHeader from "./public/Bg1.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -99,6 +98,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px",
     letterSpacing: ".05em",
     marginTop: "10px",
+    // backgroundColor: "#eeb7ba",
     [theme.breakpoints.up("md")]: {
       fontSize: "20px",
       marginTop: "20px",
@@ -122,9 +122,11 @@ const useStyles = makeStyles((theme) => ({
   feature: {
     padding: "10px",
     margin: "10px",
+    // backgroundColor: "white",
     boxShadow: "20px",
     height: 400,
     width: "400px",
+    // backgroundColor: "#eeb7ba",
   },
 }));
 
@@ -135,12 +137,17 @@ const PrescriptionCard = (props) => {
     <>
           <div className={classes.feature}>
             <div className={classes.extra1}>
-              <div className={classes.heading1}>{props.doctorName}</div>
-               <img
-                src = './p1.png'
+              {/* <img
+                src="./feature1.png"
                 alt="lady"
                 className={classes.BackgroundHead1}
-              ></img>
+              ></img> */}
+              <div className={classes.heading1}>{props.doctorName}</div>
+              <div className={classes.heading1}>Registration Number: {props.registration}</div>
+              <div className={classes.subHeading}>
+               {props.achivements}
+              </div>
+              
             </div>
           </div>
     </>
