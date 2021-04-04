@@ -160,7 +160,7 @@ const DoctorLogin = (props) => {
                 }}
               />
 
-              <Link>
+            
                 <Button
                   type="submit"
                   variant="contained"
@@ -170,7 +170,7 @@ const DoctorLogin = (props) => {
                 >
                   Sign In As Doctor
                 </Button>
-              </Link>
+            
             </div>
 
             <Typography>

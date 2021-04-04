@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
     width: "100%",
     [theme.breakpoints.up('md')]: {
-      height: 850,
+      height: "auto",
     },
 
     //  margin: 24,
@@ -35,10 +35,13 @@ const Footer = () => {
 
   return (
     <>
-     <img src="./footer1.png" alt="lady" className={classes.BackgroundHead} />
+    <div style={{marginTop: "30px"}}>
+    <img src="./footer1.png" alt="lady" style={{marginTop: "30px"}} className={classes.BackgroundHead} />
      <div className={classes.footer}>
      Made by Team Codess
      </div>
+    </div>
+    
     </>
   );
 };

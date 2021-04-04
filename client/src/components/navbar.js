@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "uppercase",
     color: "black",
     letterSpacing: ".25em",
+    // position: 'fixed',
   },
   button: {
     backgroundColor: "#eeb7ba",

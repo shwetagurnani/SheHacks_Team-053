@@ -11,11 +11,26 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
+import Zoom from "@material-ui/core/Zoom";
+import Slide from "@material-ui/core/Slide";
+
 const useStyles = makeStyles({
-  root: {
+  root1: {
     minWidth: 275,
     minHeight: 150,
     marginBottom: 20,
+    border: "1px solid #eeb7ba",
+    transition: "1s",
+
+    "&:hover": {
+      boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19)",
+      transform: "scale(0.8)",
+    },
+  },
+  root: {
+    minWidth: 275,
+    minHeight: 150,
+    transition: "1s",
   },
   bullet: {
     display: "inline-block",
@@ -31,6 +46,16 @@ const useStyles = makeStyles({
   CardContent: {
     marginTop: 20,
     marginLeft: 20,
+  },
+  typo: {
+    fontFamily: "Open Sans Condensed, sans-serif",
+    fontWeight: "bolder",
+    textTransform: "uppercase",
+    color: "#d3454c",
+    letterSpacing: ".1em",
+    // fontSize: "20px",
+    marginTop: "10px",
+    // backgroundColor: "#eeb7ba",
   },
 });
 
@@ -50,12 +75,12 @@ export default function OutlinedCard(props) {
   return (
     <React.Fragment>
       <Card
-        className={classes.root}
+        className={classes.root1}
         variant="outlined"
         onClick={handleClickOpen}
       >
         <CardContent className={classes.CardContent}>
-          <Typography variant="h5" component="h2">
+          <Typography variant="h5" component="h2" className={classes.typo}>
             {props.underApplication && props.underApplication.doctor_name}
           </Typography>
           <Typography variant="body2" component="p">
@@ -63,25 +88,38 @@ export default function OutlinedCard(props) {
           </Typography>
         </CardContent>
       </Card>
+
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        // className={classes.root}
+        TransitionComponent={Zoom}
+        transitionDelay={open ? "3000ms" : "0ms"}
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Doctor Name -"}
+        <DialogTitle id="alert-dialog-title" className={classes.typo}>
+          {"Doctor Name : "}
           {props.underApplication && props.underApplication.doctor_name}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Ailment - {props.underApplication && props.underApplication.ailment}
+          <DialogContentText
+            id="alert-dialog-description"
+            className={classes.typo}
+          >
+            Ailment : {props.underApplication && props.underApplication.ailment}
           </DialogContentText>
-          <DialogContentText id="alert-dialog-description">
-            Day - {props.underApplication && props.underApplication.day}
+          <DialogContentText
+            id="alert-dialog-description"
+            className={classes.typo}
+          >
+            Day : {props.underApplication && props.underApplication.day}
           </DialogContentText>
-          <DialogContentText id="alert-dialog-description">
-            Specialization -{" "}
+          <DialogContentText
+            id="alert-dialog-description"
+            className={classes.typo}
+          >
+            Specialization :{" "}
             {props.underApplication && props.underApplication.specialization}
           </DialogContentText>
         </DialogContent>

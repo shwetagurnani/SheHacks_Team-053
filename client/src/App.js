@@ -5,6 +5,8 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./pages/Home";
 import DoctorLogin from "./pages/DoctorLogin";
+import NewPrescriptionDoctor from "./pages/NewPrescriptionDoctor";
+import NewPrescriptionPatient from "./pages/NewPrescriptionPatient";
 import DoctorSignup from "./pages/DoctorSignup";
 import PatientLogin from "./pages/PatientLogin";
 import PatientSignup from "./pages/PatientSignup";

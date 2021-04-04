@@ -447,17 +447,18 @@ const DoctorSignup = () => {
               onChange = {(e) => {setAchievement(e.target.value)}}
             />
 
-            <Link href="/">
+           
               <Button
                 type="submit"
                 variant="contained"
                 className={classes.btnstyle}
                 fullWidth
                 onClick= {submitHandler}
+                href="/"
               >
                 Sign Up As Doctor
               </Button>
-            </Link>
+            
           </div>
 
           <Typography>

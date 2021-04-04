@@ -14,7 +14,11 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-    width: 700,
+    width: "auto",
+    [theme.breakpoints.up("md")]: {
+     
+      minWidth: 120,
+    },
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -39,8 +43,34 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
   },
   Button: {
-    margin: 10,
-    backgroundColor: "#008000",
+    backgroundColor: "#d3454c",
+    color: "#fff",
+    margin: theme.spacing(3, 2),
+    width: "300px",
+    height: 50,
+    alignSelf: "center",
+
+    [theme.breakpoints.up("md")]: {
+      width: "350px",
+    },
+  },
+  Border: {
+    border: "1px solid #eeb7ba",
+    padding: "15px",
+  },
+  heading: {
+    fontFamily: "Lobster, cursive",
+    color: "#d3454c",
+    fontSize: "20px",
+    letterSpacing: ".05em",
+    // textShadow: "2px 2px 8px #404040",
+    textAlign: "center",
+    margin: "10px",
+    padding: "10px",
+
+    [theme.breakpoints.up("md")]: {
+      fontSize: "80px",
+    },
   },
 }));
 
@@ -157,82 +187,85 @@ const GetAppointment = () => {
   return (
     <React.Fragment>
       <Toolbar />
+      <div className={classes.heading}>Upload a prescription</div>
       <Grid container>
         <Grid item xs={12} className={classes.Form}>
-          <form onSubmit={handleSubmit}>
-            <div className={classes.FormContent}>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  Doctors Specialties
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={speciality}
-                  onChange={handleChange}
+          <div className={classes.Border}>
+            <form onSubmit={handleSubmit}>
+              <div className={classes.FormContent}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">
+                    Doctors Specialties
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={speciality}
+                    onChange={handleChange}
+                  >
+                    {doctorSpecialities.map((item) => {
+                      return <MenuItem value={item}>{item}</MenuItem>;
+                    })}
+                  </Select>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">
+                    Doctors Name
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={name}
+                    onChange={handleChange2}
+                  >
+                    {speciality &&
+                      doctorName
+                        .filter((item) => item.id === speciality)
+                        .map((filteredvalue) => {
+                          return filteredvalue.value.map((item) => {
+                            return <MenuItem value={item}>{item}</MenuItem>;
+                          });
+                        })}
+                  </Select>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">
+                    Doctors Days
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={days}
+                    onChange={handleChange3}
+                  >
+                    {name &&
+                      doctorDays
+                        .filter((item) => item.id === name)
+                        .map((filteredvalue) => {
+                          return filteredvalue.value.map((item) => {
+                            return <MenuItem value={item}>{item}</MenuItem>;
+                          });
+                        })}
+                  </Select>
+                </FormControl>
+                <TextField
+                  id="standard-basic"
+                  label="Ailment"
+                  className={classes.TextInput}
+                  onChange={(e) => {
+                    setAilment(e.target.value);
+                  }}
+                />
+                <Button
+                  variant="contained"
+                  className={classes.Button}
+                  type="submit"
                 >
-                  {doctorSpecialities.map((item) => {
-                    return <MenuItem value={item}>{item}</MenuItem>;
-                  })}
-                </Select>
-              </FormControl>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  Doctors Name
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={name}
-                  onChange={handleChange2}
-                >
-                  {speciality &&
-                    doctorName
-                      .filter((item) => item.id === speciality)
-                      .map((filteredvalue) => {
-                        return filteredvalue.value.map((item) => {
-                          return <MenuItem value={item}>{item}</MenuItem>;
-                        });
-                      })}
-                </Select>
-              </FormControl>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  Doctors Days
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={days}
-                  onChange={handleChange3}
-                >
-                  {name &&
-                    doctorDays
-                      .filter((item) => item.id === name)
-                      .map((filteredvalue) => {
-                        return filteredvalue.value.map((item) => {
-                          return <MenuItem value={item}>{item}</MenuItem>;
-                        });
-                      })}
-                </Select>
-              </FormControl>
-              <TextField
-                id="standard-basic"
-                label="Ailment"
-                className={classes.TextInput}
-                onChange={(e) => {
-                  setAilment(e.target.value);
-                }}
-              />
-              <Button
-                variant="contained"
-                className={classes.Button}
-                type="submit"
-              >
-                Get Appointment
-              </Button>
-            </div>
-          </form>
+                  Get Appointment
+                </Button>
+              </div>
+            </form>
+          </div>
         </Grid>
       </Grid>
     </React.Fragment>

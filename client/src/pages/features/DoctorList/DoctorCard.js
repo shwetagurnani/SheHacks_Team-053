@@ -121,10 +121,10 @@ const useStyles = makeStyles((theme) => ({
 
   feature: {
     padding: "10px",
-    margin: "10px",
+    // margin: "10px",
     // backgroundColor: "white",
     boxShadow: "20px",
-    height: 400,
+    // height: 400,
     width: "400px",
     // backgroundColor: "#eeb7ba",
   },
