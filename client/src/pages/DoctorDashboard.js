@@ -17,14 +17,17 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   main: {
-    whiteSpace: "nowrap",
-    maxHeight: 650,
-    height: 618,
+    // whiteSpace: "nowrap",
+    // maxHeight: 650,
+    // height: 618,
+   
   },
   AppBar: {
-    position: "relative",
-    backgroundColor: "#f7f7f7",
-    height: 55,
+    position: "sticky",
+    backgroundColor: "#eeb7ba",
+    color: "#fff",
+    height: 62,
+    
   },
   AppBarContent: {
     display: "flex",
@@ -33,14 +36,15 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 55,
   },
   typo: {
-    fontFamily: "Poppins",
-    fontSize: 16,
-    fontWeight: "normal",
-    fontStretch: "normal",
-    fontStyle: "normal",
-    lineHeight: "normal",
-    letterSpacing: "normal",
-    color: "#3a3737",
+    fontFamily: "Open Sans Condensed, sans-serif",
+    fontWeight: "bolder",
+    textTransform: "uppercase",
+    color: "#d3454c",
+    letterSpacing: ".1em",
+    fontSize: "20px",
+    marginTop: "10px",
+    // backgroundColor: "#eeb7ba",
+   
   },
   typoTotal: {
     marginLeft: 5,
@@ -55,10 +59,22 @@ const useStyles = makeStyles((theme) => ({
     color: "#9999a8",
   },
   Button: {
-    margin: 20,
-    backgroundColor: "white",
-    border: "1px solid #008000",
+    backgroundColor: "#d3454c",
+    color: "#fff",
+    margin: theme.spacing(3, 2),
+    width: "300px",
+    height: 50,
+
+    [theme.breakpoints.up("md")]: {
+      width: "350px",
+    },
   },
+
+  extra2: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+	},
 }));
 
 function ElevationScroll(props) {
@@ -130,10 +146,16 @@ const Application = (props) => {
 
   return (
     <div className={classes.root}>
-      <Toolbar />
-      <Link to="/uploadPrescriptionDoctor">
+      {/* <Toolbar /> */}
+      {/* <Link to="/uploadPrescriptionDoctor">
         <Button>Write a Prescription</Button>
-      </Link>
+      </Link> */}
+
+      <div className={classes.extra2}>
+        <Button className={classes.Button} href="/uploadPrescriptionDoctor">
+          Upload A Prescription
+        </Button>
+        </div>
       <Grid container className={classes.main}>
         <Grid item xs={12} lg={4}>
           <React.Fragment>

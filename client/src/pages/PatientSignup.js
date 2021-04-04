@@ -193,17 +193,18 @@ const PatientSignup = (props) => {
               onChange = {(e) => {setConfirmPassword(e.target.value)}}
               className={classes.field}
             />
-            <Link href="/">
+           
               <Button
                 type="submit"
                 variant="contained"
                 className={classes.btnstyle}
                 fullWidth
                 onClick = {submitHandler}
+                href="/"
               >
                 Sign Up As Patient
               </Button>
-            </Link>
+          
           </div>
 
           <Typography>

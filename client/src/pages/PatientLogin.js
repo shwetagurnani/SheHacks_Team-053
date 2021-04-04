@@ -157,7 +157,7 @@ const PatientLogin = (props) => {
               onChange={ (event) => {setPass(event.target.value)}}
             />
 
-            <Link >
+         
               <Button
                 type="submit"
                 variant="contained"
@@ -167,7 +167,7 @@ const PatientLogin = (props) => {
               >
                 Sign In As Patient
               </Button>
-            </Link>
+         
           </div>
 
           <Typography>

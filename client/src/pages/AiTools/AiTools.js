@@ -156,11 +156,12 @@ const AiTools = () => {
                 booking facilities according to your location as well as video
                 call consultation from experts across the globe.
               </div>
-              <Link href="/breastcancer">
-              <Button className={classes.button} variant="contained">
+              
+              <Button className={classes.button} variant="contained"  href="/breastcancer">
+                
                 Detect Now
               </Button>
-              </Link>
+           
               
             </div>
           </div>
@@ -179,11 +180,11 @@ const AiTools = () => {
                 facilities according to your location as well as video call
                 consultation from experts across the globe.
               </div>
-              <Link href="/cervical">
-              <Button className={classes.button} variant="contained">
+              
+              <Button className={classes.button} variant="contained" href="/cervical">
                 Detect Now
               </Button>
-              </Link>
+            
               
             </div>
           </div>
@@ -202,11 +203,12 @@ const AiTools = () => {
                 facilities according to your location as well as video call
                 consultation from experts across the globe.
               </div>
-              <Link href="/pcos">
-              <Button className={classes.button} variant="contained">
+              
+              <Button className={classes.button} variant="contained"
+              href="/pcos">
                 Detect Now
               </Button>
-              </Link>
+             
             </div>
           </div>
           
