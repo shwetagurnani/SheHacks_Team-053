@@ -21,41 +21,48 @@ import Pcos from "./pages/AiTools/Pcos";
 import Cervical from "./pages/AiTools/Cervical";
 import BreastCancer from "./pages/AiTools/BreastCancer";
 import DoctorList from "./pages/features/DoctorList/DoctorList";
+import { AuthProvider } from "./components/context/Auth";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+
 const App = () => {
   return (
     <>
       <Router>
-        <Navbar />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/doctorlogin" component={DoctorLogin} />
-          <Route path="/doctorsignup" component={DoctorSignup} />
-          <Route path="/patientsignup" component={PatientSignup} />
-          <Route path="/patientlogin" component={PatientLogin} />
-          <Route path="/doctordashboard" component={DoctorDashboard} />
-          <Route path="/patientdashboard" component={PatientDashboard} />
-          <Route path="/Logout" component={Logout} />
-          <Route path="/getAppointment" component={GetAppointment} />
-          {/* <Route exact path="/chat" component={Chat} /> */}
+        <AuthProvider>
+          <Navbar />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/doctorlogin" component={DoctorLogin} />
+            <Route path="/doctorsignup" component={DoctorSignup} />
+            <Route path="/patientsignup" component={PatientSignup} />
+            <Route path="/patientlogin" component={PatientLogin} />
+            <Route path="/doctordashboard" component={DoctorDashboard} />
+            <Route path="/patientdashboard" component={PatientDashboard} />
+            <Route path="/Logout" component={Logout} />
+            <Route path="/getAppointment" component={GetAppointment} />
+            {/* <Route exact path="/chat" component={Chat} /> */}
 
-          <Route path="/features" component={Features} />
-          <Route path="/aitools" component={AiTools} />
-          <Route path="/prescription" component={Prescription} />
-          <Route path="/pcos" component={Pcos} />
-          <Route path="/cervical" component={Cervical} />
-          <Route path="/breastcancer" component={BreastCancer} />
-          <Route path="/doctorlist" component={DoctorList} />
-          <Route
-            path="/uploadPrescriptionDoctor"
-            component={NewPrescriptionDoctor}
-          />
-          <Route
-            path="/uploadPrescriptionPatient"
-            component={NewPrescriptionPatient}
-          />
-        </Switch>
+            <Route path="/features" component={Features} />
+            <Route path="/aitools" component={AiTools} />
+            <ProtectedRoutes path="/prescription">
+              <Prescription />
+            </ProtectedRoutes>
+            <Route path="/pcos" component={Pcos} />
+            <Route path="/cervical" component={Cervical} />
+            <Route path="/breastcancer" component={BreastCancer} />
+            <Route path="/doctorlist" component={DoctorList} />
+            <Route
+              path="/uploadPrescriptionDoctor"
+              component={NewPrescriptionDoctor}
+            />
+            <Route
+              path="/uploadPrescriptionPatient"
+              component={NewPrescriptionPatient}
+            />
+          </Switch>
 
-        <Footer />
+          <Footer />
+        </AuthProvider>
       </Router>
     </>
   );

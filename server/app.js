@@ -14,6 +14,7 @@ var mongoose = require("mongoose");
 var passport = require("passport");
 var cors = require("cors");
 var fs = require("fs");
+const { verifyToken } = require("./middlewares/verifyToken");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
@@ -46,17 +47,20 @@ app.use(function (req, res, next) {
   next();
 });
 app.options("*", cors());
+app.get("/users/autoLogin", verifyToken, (req, res) => {
+  res.json({ role: "user" });
+});
 app.use("/doctor", doctor);
 app.use("/patient", patient);
 // app.use('/pres', prescription);
 app.use("/chat", chat);
 // app.use(image);
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/build/index.html"));
-});
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "/build/index.html"));
+// });
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+// }
 app.get("/", function (req, res) {
   res.send("hello world");
 });

@@ -203,8 +203,6 @@ router.post("/login", (req, res) => {
   });
 });
 
-
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "images");
@@ -225,19 +223,19 @@ const fileFilter = (req, file, cb) => {
 
 let upload = multer({ storage, fileFilter });
 
-router.route("/add").post(upload.single("img"), (req, res) => {
+router.route("/add").post(upload.single("img"), verifyToken, (req, res) => {
+  console.log(req.userId);
   const name = req.body.name;
   const spec = req.body.spec;
-  const show = req.body.show;
+  // const show = req.body.show;
   const photo = req.file.filename;
-  // let patientId = req.userId;
+  const patientid = req.userId;
 
   const newPresData = {
-    show: show,
     doctor_specialization: spec,
     doctor_name: name,
     img: photo,
-    // patient_id: patientId
+    patient_id: req.userId,
   };
   const newPres = new prescription(newPresData);
   newPres
@@ -255,10 +253,10 @@ router.get("/display", (req, res) => {
   });
 });
 
-router.get("/getPatientPrescription",  (req, res) => {
+router.get("/getPatientPrescription", verifyToken, (req, res) => {
   const specialization = req.params.specialization;
   prescription
-    .find({})
+    .find({ patient_id: req.userId })
     .then((pres) => {
       var response = {};
       for (var i = 0; i < pres.length; i++) {
@@ -278,10 +276,10 @@ router.get("/getPatientPrescription",  (req, res) => {
     });
 });
 
-router.get("/getPatientPrescription/:specialization",  (req, res) => {
+router.get("/getPatientPrescription/:specialization", (req, res) => {
   const specialization = req.params.specialization;
   prescription
-    .find({doctor_specialization: specialization})
+    .find({ doctor_specialization: specialization })
     .then((response) => {
       res.json({ success: true, response });
     })

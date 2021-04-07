@@ -163,13 +163,11 @@ const Features = () => {
                 Manage Now
               </Button>
               </Link> */}
-              <Button
-                href="/prescription"
-                className={classes.button}
-                variant="contained"
-              >
-                Manage Now
-              </Button>
+              <Link to="/prescription">
+                <Button className={classes.button} variant="contained">
+                  Manage Now
+                </Button>
+              </Link>
             </div>
           </div>
           <div className={classes.feature}>
@@ -187,8 +185,11 @@ const Features = () => {
                 facilities according to your location as well as video call
                 consultation from experts across the globe.
               </div>
-              <Button className={classes.button} variant="contained"
-               href="/">
+              <Button
+                className={classes.button}
+                variant="contained"
+                href="/doctorlist"
+              >
                 Consult Now
               </Button>
             </div>
@@ -208,13 +209,14 @@ const Features = () => {
                 facilities according to your location as well as video call
                 consultation from experts across the globe.
               </div>
- 
-                <Button className={classes.button} variant="contained"
-                href="/getAppointment">
 
-                  Book Now
-                </Button>
-              
+              <Button
+                className={classes.button}
+                variant="contained"
+                href="/getAppointment"
+              >
+                Book Now
+              </Button>
             </div>
           </div>
           <div className={classes.feature}>
@@ -232,13 +234,14 @@ const Features = () => {
                 facilities according to your location as well as video call
                 consultation from experts across the globe.
               </div>
-             
-                <Button variant="contained" className={classes.button}
-                  href="/doctorlist">
-                
-                  Check Now
-                </Button>
-              
+
+              <Button
+                variant="contained"
+                className={classes.button}
+                href="/doctorlist"
+              >
+                Check Now
+              </Button>
             </div>
           </div>
         </div>
