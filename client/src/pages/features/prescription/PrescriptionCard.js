@@ -130,14 +130,15 @@ const useStyles = makeStyles((theme) => ({
 
 const PrescriptionCard = (props) => {
   const classes = useStyles();
-
+  console.log("*******************************");
+  console.log(props.image);
   return (
     <>
           <div className={classes.feature}>
             <div className={classes.extra1}>
               <div className={classes.heading1}>{props.doctorName}</div>
                <img
-                src = './p1.png'
+                src={`/${props.image}`}
                 alt="lady"
                 className={classes.BackgroundHead1}
               ></img>

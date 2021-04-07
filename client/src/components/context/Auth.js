@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { createContext, useReducer, useEffect } from "react";
-
 const initialState = {
   loggedIn: false,
   role: "user",
@@ -12,7 +11,9 @@ const { Provider } = authContext;
 const AuthProvider = ({ children }) => {
   useEffect(() => {
     axios
-      .get("/users/autoLogin")
+      .get("http://localhost:3000/users/autoLogin", {
+        headers: { "x-access-token": localStorage.getItem("token") },
+      })
       .then((res) => {
         dispatch({ type: "LOG_IN" });
         dispatch({ type: "SET_ROLE", payload: res.data.role });
@@ -27,6 +28,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const [state, dispatch] = useReducer((state, action) => {
+    console.log(action);
     switch (action.type) {
       case "LOG_IN":
         return { ...state, loggedIn: true };

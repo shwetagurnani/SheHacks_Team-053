@@ -99,7 +99,7 @@ const PatientLogin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
 
-  let { dispatch } = useContext(authContext);
+  let { dispatch, state } = useContext(authContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -107,9 +107,9 @@ const PatientLogin = (props) => {
       .post("http://localhost:3000/patient/login", { email, password })
       .then((res) => {
         if (res.data.success) {
-          console.log(res.data);
+          console.log(state);
           localStorage.setItem("token", res.data.token);
-          dispatch({ type: "SET_ROLE", payload: "DOCTOR" });
+          dispatch({ type: "SET_ROLE", payload: "PATIENT" });
           dispatch({ type: "SET_USERID", payload: res.data.id });
           dispatch({ type: "LOG_IN" });
           props.history.push("/patientdashboard");
@@ -128,36 +128,38 @@ const PatientLogin = (props) => {
     margin: "20px auto",
   };
 
-
   const btnstyle = { margin: "8px 0" };
   return (
-  <div className={classes.extra}>
-    <img src="./signup.png" alt="lady" className={classes.BackgroundHead} />
-    <div>
-      <Grid>
-        <div className={classes.paperStyle}>
-          <Grid align="center">
-            <h4 className={classes.heading}>Sign In</h4>
-          </Grid>
-          <div className={classes.extra1}>
-            <TextField
-              id="outlined-basic"
-              label="Email"
-              variant="outlined"
-              type="email"
-              className={classes.field}
-              onChange={ (event) => {setEmail(event.target.value)}}
-            />
-            <TextField
-              id="outlined-basic"
-              label="Password"
-              variant="outlined"
-              type="password"
-              className={classes.field}
-              onChange={ (event) => {setPass(event.target.value)}}
-            />
+    <div className={classes.extra}>
+      <img src="./signup.png" alt="lady" className={classes.BackgroundHead} />
+      <div>
+        <Grid>
+          <div className={classes.paperStyle}>
+            <Grid align="center">
+              <h4 className={classes.heading}>Sign In</h4>
+            </Grid>
+            <div className={classes.extra1}>
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                type="email"
+                className={classes.field}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+              <TextField
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                type="password"
+                className={classes.field}
+                onChange={(event) => {
+                  setPass(event.target.value);
+                }}
+              />
 
-         
               <Button
                 type="submit"
                 variant="contained"
@@ -167,18 +169,16 @@ const PatientLogin = (props) => {
               >
                 Sign In As Patient
               </Button>
-         
-          </div>
+            </div>
 
-          <Typography>
-            New Member ?<Link href="/patientsignup">Sign Up</Link>
-          </Typography>
-        </div>
-      </Grid>
+            <Typography>
+              New Member ?<Link href="/patientsignup">Sign Up</Link>
+            </Typography>
+          </div>
+        </Grid>
+      </div>
     </div>
-  </div>
   );
-  
 };
 
 export default PatientLogin;
