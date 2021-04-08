@@ -146,11 +146,12 @@ const useStyles = makeStyles((theme) => ({
     height: "22px",
   },
   newHeading: {
-    fontFamily: "Jost, sans-serif",
+    fontFamily: 'Antic, sans-serif',
     textAlign: "center",
+    fontSize: "20px",
     // maxWidth: "950px",
     [theme.breakpoints.up("md")]: {
-      maxWidth: "950px",
+      maxWidth: "1200px",
     },
   },
 }));
