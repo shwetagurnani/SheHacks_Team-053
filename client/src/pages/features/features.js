@@ -185,13 +185,14 @@ const Features = () => {
                 facilities according to your location as well as video call
                 consultation from experts across the globe.
               </div>
+              <Link to = "/doctorlist">
               <Button
                 className={classes.button}
                 variant="contained"
-                href="/doctorlist"
               >
                 Consult Now
               </Button>
+              </Link>
             </div>
           </div>
           <div className={classes.feature}>
@@ -209,14 +210,14 @@ const Features = () => {
                 facilities according to your location as well as video call
                 consultation from experts across the globe.
               </div>
-
+              <Link to = "/getAppointment">
               <Button
                 className={classes.button}
                 variant="contained"
-                href="/getAppointment"
               >
                 Book Now
               </Button>
+              </Link>
             </div>
           </div>
          
