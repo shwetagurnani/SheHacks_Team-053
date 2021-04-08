@@ -11,6 +11,7 @@ const Appointment = require("../models/Appointment");
 const { verifyToken } = require("../middlewares/verifyToken");
 // const Image = require("../models/Image");
 const Doctor = require("../models/Doctor");
+const Patient = require("../models/Patient");
 
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
@@ -37,27 +38,29 @@ const fileFilter = (req, file, cb) => {
 
 let upload = multer({ storage, fileFilter });
 
-router.route("/add").post(upload.single("img"), (req, res) => {
+router.route("/add").post(upload.single("img"), verifyToken, (req, res) => {
   const name = req.body.name;
-  const spec = req.body.spec;
-  const show = req.body.show;
   const photo = req.file.filename;
-  // let patientId = req.userId;
-
-  const newPresData = {
-    show: show,
-    doctor_specialization: spec,
-    doctor_name: name,
-    img: photo,
-    // patient_id: patientId
-  };
-  const newPres = new prescription(newPresData);
-  newPres
-    .save()
-    .then((result) => res.json(result))
-    .catch((err) => res.status(400).json("Error: " + err));
+  let doctorId = req.userId;
+  Doctor.findById(doctorId)
+    .then((doctor) => {
+      Patient.find({ name: name }).then((patient) => {
+       prescription.create({
+        doctor_specialization: doctor.specialization,
+        doctor_name: doctor.name,
+        img: photo,
+        patient_id: patient[0]._id,
+       })
+       .then(pres => {
+         console.log(pres);
+        res.json({ success: true })
+      })
+      .catch(err => {
+        res.json({ success: false })
+      })
+      });
+    });
 });
-
 
 router.get("/display", (req, res) => {
   prescription.find({}, function (err, img) {
@@ -67,10 +70,6 @@ router.get("/display", (req, res) => {
     res.send(img);
   });
 });
-
-
-
-
 
 router.post("/register", (req, res) => {
   Doctor.findOne({ email: req.body.email }).then((doctor) => {
@@ -145,6 +144,7 @@ router.post("/login", (req, res) => {
             });
           }
         );
+        console.log("Shwetaaa");
         console.log(doctor.email);
         console.log("doctorlogin ");
       } else {
@@ -181,14 +181,15 @@ router.get("/getSpecialization", (req, res) => {
 router.get("/getDoctors/:category", (req, res) => {
   const category = req.params.category;
 
-    doctors.find({specialization: category}).then((response) => {
+  doctors
+    .find({ specialization: category })
+    .then((response) => {
       res.json({ success: true, response });
     })
     .catch((err) => {
       res.json({ success: false });
     });
 });
-
 
 router.get("/getDays", (req, res) => {
   doctors.find({}).then((doctor) => {
@@ -281,9 +282,5 @@ router.get("/getSpecializationAndName", (req, res) => {
       res.json({ success: false });
     });
 });
-
-
-
-
 
 module.exports = router;

@@ -177,7 +177,7 @@ const Features = () => {
                 alt="lady"
                 className={classes.BackgroundHead1}
               ></img> */}
-              <div className={classes.heading1}>Consult Health Experts</div>
+              <div className={classes.heading1}>Know about our Health Experts</div>
               <div className={classes.subHeading}>
                 We put together an array of dedicated and skilled experts to
                 assist you out of every hurdle you make come across, in a
@@ -219,31 +219,7 @@ const Features = () => {
               </Button>
             </div>
           </div>
-          <div className={classes.feature}>
-            <div className={classes.extra1}>
-              {/* <img
-                src="./feature1.png"
-                alt="lady"
-                className={classes.BackgroundHead1}
-              ></img> */}
-              <div className={classes.heading1}>Know About Our Experts</div>
-              <div className={classes.subHeading}>
-                We put together an array of dedicated and skilled experts to
-                assist you out of every hurdle you make come across, in a
-                diligent and efficient manner. We provide appointment booking
-                facilities according to your location as well as video call
-                consultation from experts across the globe.
-              </div>
-
-              <Button
-                variant="contained"
-                className={classes.button}
-                href="/doctorlist"
-              >
-                Check Now
-              </Button>
-            </div>
-          </div>
+         
         </div>
       </div>
     </>
