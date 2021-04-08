@@ -93,8 +93,8 @@ const useStyles = makeStyles((theme) => ({
   para: {
     margin: theme.spacing(.1, .1),
     textAlign: "center",
-    maxWidth: "500px",
-    fontFamily: "Jost, sans-serif",
+    maxWidth: "600px",
+    fontFamily: 'Antic, sans-serif',
     fontSize: "20px",
     [theme.breakpoints.up("md")]: {
       margin: theme.spacing(8, 8),
