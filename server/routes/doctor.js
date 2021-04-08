@@ -74,7 +74,7 @@ router.get("/display", (req, res) => {
 router.post("/register", (req, res) => {
   Doctor.findOne({ email: req.body.email }).then((doctor) => {
     if (doctor) {
-      return res.status(400).json({ email: "Email already exists" });
+      return res.status(200).json({ email: "Email already exists"});
     } else {
       console.log(req.body.achievements);
       const newDoctor = new Doctor({
