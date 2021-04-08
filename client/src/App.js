@@ -39,9 +39,11 @@ const App = () => {
             <Route path="/doctordashboard" component={DoctorDashboard} />
             <Route path="/patientdashboard" component={PatientDashboard} />
             <Route path="/Logout" component={Logout} />
-            <Route path="/getAppointment" component={GetAppointment} />
+            {/* <Route path="/getAppointment" component={GetAppointment} /> */}
             {/* <Route exact path="/chat" component={Chat} /> */}
-
+            <ProtectedRoutes path="/getAppointment">
+              <GetAppointment />
+            </ProtectedRoutes>
             <Route path="/features" component={Features} />
             <Route path="/aitools" component={AiTools} />
             <ProtectedRoutes path="/prescription">

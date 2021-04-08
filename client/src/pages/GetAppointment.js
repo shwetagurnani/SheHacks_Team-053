@@ -187,7 +187,7 @@ const GetAppointment = () => {
   return (
     <React.Fragment>
       <Toolbar />
-      <div className={classes.heading}>Upload a prescription</div>
+      <div className={classes.heading}>Book an Appointment</div>
       <Grid container>
         <Grid item xs={12} className={classes.Form}>
           <div className={classes.Border}>
