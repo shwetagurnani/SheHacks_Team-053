@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
   Grid,
@@ -13,7 +13,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { useHistory } from "react-router-dom";
 import {
   fade,
   ThemeProvider,
@@ -103,12 +103,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 const PatientSignup = (props) => {
   const classes = useStyles();
-
-  const [name,setName] = useState("");
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
-  const [phone,setPhone] = useState("");
-  const [confirmPassword,setConfirmPassword] = useState("");
+  const history = useHistory();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const paperStyle = {
     padding: 20,
@@ -123,12 +123,12 @@ const PatientSignup = (props) => {
 
     axios
       .post("http://localhost:3000/patient/register", {
-                  "name":name,
-                  "email":email,
-                  "password":password,
-                  "phone":phone,
-                  "password2":confirmPassword,
-              })
+        name: name,
+        email: email,
+        password: password,
+        phone: phone,
+        password2: confirmPassword,
+      })
       .then((res) => {
         if (res.data.success) {
           console.log(res.data);
@@ -137,83 +137,95 @@ const PatientSignup = (props) => {
           // dispatch({ type: "SET_USERID", payload: res.data.id });
           // dispatch({ type: "LOG_IN" });
           props.history.push("/patientdashboard");
+        } else if (res.data.email) {
+          alert("User already exist, please sign in to continue");
+          history.push("/patientlogin");
         } else {
           console.log(res.data);
           // props.history.push("/doctologin");
         }
       });
-  }
+  };
 
   const btnstyle = { margin: "8px 0" };
   return (
     <div className={classes.extra}>
-    <img src="./signup.png" alt="lady" className={classes.BackgroundHead} />
-    <div>
-      <Grid>
-        <div className={classes.paperStyle}>
-          <Grid align="center">
-            <h4 className={classes.heading}>Sign Up</h4>
-          </Grid>
-          <div className={classes.extra1}>
-            <TextField
-              id="outlined-basic"
-              label="Usename"
-              variant="outlined"
-              onChange = {(e) => {setName(e.target.value)}}
-              className={classes.field}
-            />
-            <TextField
-              id="outlined-basic"
-              label="Email"
-              variant="outlined"
-              onChange = {(e) => {setEmail(e.target.value)}}
-              className={classes.field}
-            />
-            <TextField
-              id="outlined-basic"
-              label="contact Number"
-              variant="outlined"
-              onChange = {(e) => {setPhone(e.target.value)}}
-              className={classes.field}
-            />
-            
-            <TextField
-              id="outlined-basic"
-              label="Password"
-              variant="outlined"
-              type="password"
-              onChange = {(e) => {setPassword(e.target.value)}}
-              className={classes.field}
-            />
-            <TextField
-              id="outlined-basic"
-              label=" Confirm Password"
-              variant="outlined"
-              type="password"
-              onChange = {(e) => {setConfirmPassword(e.target.value)}}
-              className={classes.field}
-            />
-           
+      <img src="./signup.png" alt="lady" className={classes.BackgroundHead} />
+      <div>
+        <Grid>
+          <div className={classes.paperStyle}>
+            <Grid align="center">
+              <h4 className={classes.heading}>Sign Up</h4>
+            </Grid>
+            <div className={classes.extra1}>
+              <TextField
+                id="outlined-basic"
+                label="Usename"
+                variant="outlined"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                className={classes.field}
+              />
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                className={classes.field}
+              />
+              <TextField
+                id="outlined-basic"
+                label="contact Number"
+                variant="outlined"
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                }}
+                className={classes.field}
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                type="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                className={classes.field}
+              />
+              <TextField
+                id="outlined-basic"
+                label=" Confirm Password"
+                variant="outlined"
+                type="password"
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                }}
+                className={classes.field}
+              />
+
               <Button
                 type="submit"
                 variant="contained"
                 className={classes.btnstyle}
                 fullWidth
-                onClick = {submitHandler}
+                onClick={submitHandler}
                 href="/"
               >
                 Sign Up As Patient
               </Button>
-          
-          </div>
+            </div>
 
-          <Typography>
-            Already a member ?<Link href="/patientlogin">Sign In</Link>
-          </Typography>
-        </div>
-      </Grid>
+            <Typography>
+              Already a member ?<Link href="/patientlogin">Sign In</Link>
+            </Typography>
+          </div>
+        </Grid>
+      </div>
     </div>
-  </div>
   );
 };
 

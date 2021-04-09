@@ -226,7 +226,7 @@ let upload = multer({ storage, fileFilter });
 router.route("/add").post(upload.single("img"), verifyToken, (req, res) => {
   console.log(req.userId);
   const name = req.body.name;
-  const spec = req.body.spec;z
+  const spec = req.body.spec;
   // const show = req.body.show;
   const photo = req.file.filename;
   const patientid = req.userId;
