@@ -48,6 +48,7 @@ router.route("/add").post(upload.single("img"), verifyToken, (req, res) => {
        prescription.create({
         doctor_specialization: doctor.specialization,
         doctor_name: doctor.name,
+        doctor_id: doctorId,
         img: photo,
         patient_id: patient[0]._id,
        })
@@ -155,6 +156,17 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+router.get("/getPrescription", verifyToken, (req, res) => {
+  prescription.find({doctor_id: req.userId})
+  .then((pres) => {
+    console.log(pres);
+    res.json({ success: true, pres });
+  })
+  .catch((err) => {
+    res.json({success: false});
+  })
+})
 
 router.get("/getSpecialization", (req, res) => {
   doctors
