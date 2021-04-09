@@ -9,7 +9,6 @@ const doctors = require("../models/Doctor");
 var spawn = require("child_process").spawn;
 const Appointment = require("../models/Appointment");
 const { verifyToken } = require("../middlewares/verifyToken");
-// const Image = require("../models/Image");
 const Doctor = require("../models/Doctor");
 const Patient = require("../models/Patient");
 

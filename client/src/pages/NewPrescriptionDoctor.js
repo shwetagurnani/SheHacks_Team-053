@@ -116,8 +116,6 @@ const NewPrescription = (props) => {
   const [newPres, setNewPres] = useState({
     img: "",
     name: "",
-    // spec: "",
-    // show: true,
   });
 
   const handleSubmit = (e) => {
@@ -125,8 +123,6 @@ const NewPrescription = (props) => {
     const formData = new FormData();
     formData.append("img", newPres.img);
     formData.append("name", newPres.name);
-    // formData.append("spec", newPres.spec);
-    // formData.append("show", newPres.show);
     console.log(localStorage.getItem("token"));
     axios({
       method: "POST",
@@ -184,38 +180,6 @@ const NewPrescription = (props) => {
               className={classes.textField}
             />
           </div>
-          {/* <div className={classes.form}>
-            <h3 className={classes.text}>specialization:</h3>
-            <input
-              type="text"
-              placeholder="specialization"
-              name="spec"
-              value={newPres.spec}
-              onChange={handleChange}
-              className={classes.textField}
-            />
-          </div>
-          <div className={classes.form}>
-            <h3 className={classes.text}>Upload Medical History?:</h3>
-            <input
-              required
-              type="radio"
-              id="yes"
-              name="show"
-              value="yes"
-              onChange={handleChange}
-            />
-            <label for="yes">Yes</label>
-            <input
-              required
-              type="radio"
-              id="no"
-              name="show"
-              value="no"
-              onChange={handleChange}
-            />
-            <label for="no">No</label>
-          </div> */}
           <div className={classes.extra2}>
             <input
               type="submit"
