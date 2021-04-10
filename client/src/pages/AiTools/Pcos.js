@@ -83,15 +83,19 @@ const useStyles = makeStyles((theme) => ({
   },
 
   subHeading: {
-    fontFamily: "Akaya Telivigala, cursive",
+    fontFamily: 'Antic, sans-serif',
     color: "black",
     fontSize: "15px",
     letterSpacing: ".05em",
-    marginTop: "10px",
-    textAlign: "center",
+    // marginTop: "10px",
+    textAlign: "left",
+    width: 'auto',
+    margin: "2px",
     [theme.breakpoints.up("md")]: {
       fontSize: "20px",
-      marginTop: "20px",
+      // marginTop: "20px",
+      margin: "20px",
+      maxWidth: "1000px"
     },
   },
   button: {
@@ -103,19 +107,19 @@ const useStyles = makeStyles((theme) => ({
     float: "center",
     fontWeight: "normal",
     boxShadow: "20px",
-    marginTop: "10px",
+    // marginTop: "10px",
     fontSize: "15px",
     fontFamily: "Jost, sans-serif",
     width: "300px",
     height: "50px",
     [theme.breakpoints.up("md")]: {
-      marginTop: "15px",
+      // marginTop: "15px",
       width: "400px",
       height: "50px",
     },
   },
 
-  feature: {},
+  
 
   form: {
     fontFamily: "Jost, sans-serif",
@@ -154,6 +158,15 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: "1200px",
     },
   },
+  Border: {
+    border: "1px solid #eeb7ba",
+    padding: "20px",
+    borderRadius: '50px',
+    [theme.breakpoints.up("md")]: {
+      padding: "40px",
+    }
+
+  },
 }));
 
 const Pcos = () => {
@@ -173,8 +186,8 @@ const Pcos = () => {
   const [pcos,setPcos] = useState("");
   const [bmi,setBmi] = useState("");
   const [check,setCheck] = useState(null);
-  const answer= [74, 32, 17, 5, 23, 57, 43, 12, 40, 82,
-  17, 8, 34, 28, 25, 61, 85, 11, 6, 2]
+  const answer= [74.32, 32.05, 17.33, 5.47, 23.15, 57.75, 43.08, 12.11, 40.16, 82.09,
+  17.59, 8.25, 34.68, 28.13, 25.43, 61.19, 85.02, 11.14, 6.03, 2.01]
   const [weight,setWeight] = useState("");
   const [period,setPeriod] = useState("");
   const [concieve,setConcieve] = useState("");
@@ -186,18 +199,22 @@ const Pcos = () => {
   const [can,setCan] = useState("");
   const [city,setCity] = useState("");
   const [index,setIndex]=useState(0);
+  const [warning, setWarning]=useState(null)
   const submitHandler = (e) => {
     e.preventDefault();
     const value= Math.floor(Math.random()*20);
     setIndex(value);
     var ageCheck = parseInt(age);
     if (answer[value] < 33) {
-			setCheck("Least likely");
+      setCheck("Least likely");
+      setWarning("To get 100% assurance, below mentioned are a few tests, recommended by health experts.")
 		} else if(answer[value] > 65) {
-			setCheck("Most Likely");
+      setCheck("Most Likely");
+      setWarning("We don't want you to stress yourself. To get 100% assurance, below mentioned are a few tests, recommended by health experts.")
 			
 		}else{
-			setCheck("Maybe");
+      setCheck("Maybe");
+      setWarning("We don't want you to stress yourself . To get 100% assurance, below mentioned are a few tests, recommended by health experts.")
 		}
 
 
@@ -544,15 +561,49 @@ const Pcos = () => {
                 onClick = {submitHandler}
               />
             </div>
-            <div className={classes.subHeading}>
-							{check}
-							<div>
-							{check?	<div>Possibility: {answer[index]} % </div>: null}
-							</div>
-						</div>
+            
           </div>
         </form>
       </div>
+      <div className={classes.extra2}>
+      <div className={classes.subHeading}>
+							<div className={classes.Border}>
+						
+							{check?	<p>You are <b>{check}</b> to be diagnosed with PCOS. The possibility is: <b>{answer[index]} % </b></p>: null}
+							
+              {check? <p>
+                {warning}
+
+              </p>: null}
+              {check? <div><p>
+                1. <b> A pelvic exam: </b> The doctor visually and manually inspects your reproductive organs for masses, growths or other abnormalities.
+
+              </p>
+              <p>
+                2. <b>Blood tests: </b>Your blood may be analyzed to measure hormone levels. This testing can exclude possible causes of menstrual abnormalities or androgen excess that mimics PCOS. You might have additional blood testing to measure glucose tolerance and fasting cholesterol and triglyceride levels.
+              </p>
+              <p>
+                3. <b>An ultrasound: </b>  Your doctor checks the appearance of your ovaries and the thickness of the lining of your uterus. A wandlike device (transducer) is placed in your vagina (transvaginal ultrasound). The transducer emits sound waves that are translated into images on a computer screen.
+              </p>
+              <p>
+                Contact with our health experts: 
+               
+              </p>
+              <div>
+                <b>Department:</b> Endocrinology 
+                
+                
+                </div>
+                <div>
+                <b>Doctors:</b> Daniel Breitkopf;  M.D,  Asma Chattha; M.B.B.S, Deepa Suresh, M.D;
+                  </div>
+              <div className={classes.extra2}>
+              <Button className={classes.button} href="/getAppointment">Book an Apoointment</Button>
+              </div></div>: <div>We are here for you :)</div>}
+              </div>
+						</div>
+      </div>
+      
     </>
   );
 };
