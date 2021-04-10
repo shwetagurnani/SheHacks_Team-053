@@ -153,7 +153,7 @@ const Application = (props) => {
 
       <div className={classes.extra2}>
         <Button className={classes.Button} href="/uploadPrescriptionDoctor">
-          Upload A Prescription
+          Write A Prescription
         </Button>
         </div>
       <Grid container className={classes.main}>

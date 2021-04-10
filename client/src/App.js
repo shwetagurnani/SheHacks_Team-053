@@ -23,6 +23,7 @@ import BreastCancer from "./pages/AiTools/BreastCancer";
 import DoctorList from "./pages/features/DoctorList/DoctorList";
 import { AuthProvider } from "./components/context/Auth";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import doctorHistoryList from './pages/features/DoctorList/DoctorHistoryList';
 
 const App = () => {
   return (
@@ -39,9 +40,11 @@ const App = () => {
             <Route path="/doctordashboard" component={DoctorDashboard} />
             <Route path="/patientdashboard" component={PatientDashboard} />
             <Route path="/Logout" component={Logout} />
-            <Route path="/getAppointment" component={GetAppointment} />
+            {/* <Route path="/getAppointment" component={GetAppointment} /> */}
             {/* <Route exact path="/chat" component={Chat} /> */}
-
+            <ProtectedRoutes path="/getAppointment">
+              <GetAppointment />
+            </ProtectedRoutes>
             <Route path="/features" component={Features} />
             <Route path="/aitools" component={AiTools} />
             <ProtectedRoutes path="/prescription">
@@ -51,6 +54,7 @@ const App = () => {
             <Route path="/cervical" component={Cervical} />
             <Route path="/breastcancer" component={BreastCancer} />
             <Route path="/doctorlist" component={DoctorList} />
+            
             <Route
               path="/uploadPrescriptionDoctor"
               component={NewPrescriptionDoctor}
@@ -59,6 +63,7 @@ const App = () => {
               path="/uploadPrescriptionPatient"
               component={NewPrescriptionPatient}
             />
+            <Route path="/doctorHistory" component={doctorHistoryList} />
           </Switch>
 
           <Footer />

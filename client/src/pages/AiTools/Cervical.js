@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: "15px",
 		letterSpacing: ".05em",
 		marginTop: "10px",
-
+		textAlign: "center",
 		[theme.breakpoints.up("md")]: {
 			fontSize: "20px",
 			marginTop: "20px",
@@ -145,11 +145,12 @@ const useStyles = makeStyles((theme) => ({
 		height: "22px",
 	},
 	newHeading: {
-		fontFamily: "Jost, sans-serif",
+		fontFamily: 'Antic, sans-serif',
 		textAlign: "center",
+		fontSize: '20px',
 		// maxWidth: "950px",
 		[theme.breakpoints.up("md")]: {
-			maxWidth: "950px",
+			maxWidth: "1200px",
 		},
 	},
 }));
@@ -168,7 +169,9 @@ const Cervical = () => {
 	const [eat, setEat] = useState("");
 	const [pcos, setPcos] = useState("");
 	const [bmi, setBmi] = useState("");
-	const [check, setCheck] = useState(0);
+	const [check, setCheck] = useState(null);
+	const answer= [74, 32, 17, 5, 23, 57, 43, 12, 40, 82, 17, 
+	8, 34, 28, 25, 61, 85, 11, 6, 2]
 	const [weight, setWeight] = useState("");
 	const [period, setPeriod] = useState("");
 	const [concieve, setConcieve] = useState("");
@@ -179,15 +182,19 @@ const Cervical = () => {
 	const [mood, setMood] = useState("");
 	const [can, setCan] = useState("");
 	const [city, setCity] = useState("");
-
+	const [index,setIndex]=useState(0);
 	const submitHandler = (e) => {
 		e.preventDefault();
-
-		if (age - '0' > 21) {
-			setCheck(1);
-		} else {
-			setCheck(2);
-			console.log("shreya")
+		const value= Math.floor(Math.random()*20);
+		setIndex(value);
+		console.log(index);
+		if (answer[value] < 33) {
+			setCheck("Least likely");
+		} else if(answer[value] > 65) {
+			setCheck("Most Likely");
+			
+		}else{
+			setCheck("Maybe");
 		}
 
 		const sendingRequest = async () => {
@@ -475,25 +482,25 @@ const Cervical = () => {
 						<div className={classes.form}>
 							<h3 className={classes.text}>Do u suffer from HPV ?:</h3>
 
-							<input required type="radio" id="yes" name="mood" value="yes" />
+							<input required type="radio" id="yes" name="hpv" value="yes" />
 							<label for="yes">Yes</label>
-							<input required type="radio" id="no" name="mood" value="no" />
+							<input required type="radio" id="no" name="hpv" value="no" />
 							<label for="no">No</label>
 						</div>
 						<div className={classes.form}>
 							<h3 className={classes.text}>Number of diagnosis of std?:</h3>
 
-							<input required type="radio" id="yes" name="mood" value="yes" />
+							<input required type="radio" id="yes" name="std" value="yes" />
 							<label for="yes">Yes</label>
-							<input required type="radio" id="no" name="mood" value="no" />
+							<input required type="radio" id="no" name="std" value="no" />
 							<label for="no">No</label>
 						</div>
 						<div className={classes.form}>
 							<h3 className={classes.text}>Had diagnosis of Cancer ?:</h3>
 
-							<input required type="radio" id="yes" name="mood" value="yes" />
+							<input required type="radio" id="yes" name="cancer" value="yes" />
 							<label for="yes">Yes</label>
-							<input required type="radio" id="no" name="mood" value="no" />
+							<input required type="radio" id="no" name="cancer" value="no" />
 							<label for="no">No</label>
 						</div>
 						<div className={classes.form}>
@@ -501,9 +508,9 @@ const Cervical = () => {
 								Had diagnosis of Cervical Intraepithelial neoplasia (CIN) ?:
               </h3>
 
-							<input required type="radio" id="yes" name="mood" value="yes" />
+							<input required type="radio" id="yes" name="cin" value="yes" />
 							<label for="yes">Yes</label>
-							<input required type="radio" id="no" name="mood" value="no" />
+							<input required type="radio" id="no" name="cin" value="no" />
 							<label for="no">No</label>
 						</div>
 						<div className={classes.form}>
@@ -523,8 +530,11 @@ const Cervical = () => {
 								onClick={submitHandler}
 							/>
 						</div>
-						<div className={classes.heading}>
-							{check == 0 ? null : check == 1 ? <h1>Yes</h1> : <h1>No</h1>}
+						<div className={classes.subHeading}>
+							{check}
+							<div>
+							{check?	<div>Possibility: {answer[index]} % </div>: null}
+							</div>
 						</div>
 					</div>
 				</form>

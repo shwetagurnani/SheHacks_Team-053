@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 import { makeStyles } from "@material-ui/core/styles";
-
-
+import { Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   extra: {
@@ -112,12 +110,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewPrescription = () => {
+const NewPrescription = (props) => {
+  const classes = useStyles();
+  const history = useHistory();
   const [newPres, setNewPres] = useState({
     img: "",
     name: "",
-    spec: "",
-    show: true,
   });
 
   const handleSubmit = (e) => {
@@ -125,15 +123,20 @@ const NewPrescription = () => {
     const formData = new FormData();
     formData.append("img", newPres.img);
     formData.append("name", newPres.name);
-    formData.append("spec", newPres.spec);
-    // formData.append("show", newPres.show);
-    console.log(formData);
-    axios
-      .post("http://localhost:3000/doctor/add/", formData)
+    console.log(localStorage.getItem("token"));
+    axios({
+      method: "POST",
+      url: "http://localhost:3000/doctor/add/",
+      headers: { "x-access-token": localStorage.getItem("token") },
+      data: formData,
+    })
       .then((res) => {
+        history.push("/prescription");
         console.log(res);
       })
       .catch((err) => {
+        alert("Username of the patient is wrong");
+        history.push("/uploadPrescriptionDoctor")
         console.log(err);
       });
   };
@@ -145,16 +148,27 @@ const NewPrescription = () => {
   const handleChange = (e) => {
     setNewPres({ ...newPres, [e.target.name]: e.target.value });
   };
-  const classes = useStyles();
+
   return (
     <div>
-      <div className={classes.heading}>Upload a Prescription</div>
+      <div className={classes.heading}>Write a prescription</div>
       <form
         onSubmit={handleSubmit}
         encType="multipart/form-data"
         className={classes.extra2}
       >
         <div>
+          <div className={classes.form}>
+            <h3 className={classes.text}>Upload a Prescription</h3>
+            <input
+              type="file"
+              accept=".png, .jpg, .jpeg"
+              name="photo"
+              onChange={handlePhoto}
+              className={classes.textField}
+            />
+          </div>
+
           <div className={classes.form}>
             <h3 className={classes.text}>UserName:</h3>
             <input
@@ -166,55 +180,13 @@ const NewPrescription = () => {
               className={classes.textField}
             />
           </div>
-
-          <div className={classes.form}>
-            <h3  className={classes.text}>UserName:</h3>
-
+          <div className={classes.extra2}>
             <input
-              type="text"
-              placeholder="specialization"
-              name="spec"
-              value={newPres.spec}
-              onChange={handleChange}
-              className={classes.textField}
+              type="submit"
+              value="Upload a prescription"
+              className={classes.button}
             />
           </div>
-
-          <div className={classes.form}>
-            <h3  className={classes.text}>Upload a prescription:</h3>
-            <input
-              type="file"
-              accept=".png, .jpg, .jpeg"
-              name="photo"
-              onChange={handlePhoto}
-              className={classes.textField}
-            />
-          </div>
-
-          {/* <input
-        required
-        type="radio"
-        id="yes"
-        name="show"
-        value="yes"
-        onChange={handleChange}
-      />
-      <label for="yes">Yes</label>
-      <input
-        required
-        type="radio"
-        id="no"
-        name="show"
-        value="no"
-        onChange={handleChange}
-      />
-      <label for="no">No</label> */}
-      <div className={classes.extra2}>
-      <input type="submit" 
-          value="Submit Details"
-          className={classes.button}/>
-      </div>
-        
         </div>
       </form>
     </div>
