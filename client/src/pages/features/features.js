@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "10px",
     padding: "20px",
     boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19)",
-    minHeight: "400px"
+    minHeight: "400px",
     // backgroundColor: "#eeb7ba",
   },
   heading: {
@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   subHeading: {
-    fontFamily: 'Antic, sans-serif',
+    fontFamily: "Antic, sans-serif",
     color: "black",
     fontSize: "15px",
     letterSpacing: ".05em",
@@ -153,15 +153,17 @@ const Features = () => {
               ></img> */}
               <div className={classes.heading1}>Manage medical history</div>
               <div className={classes.subHeading}>
-              We reduce your burden of collecting medical prescriptions and reports by storing and maintaining your medical records and share them with your practitioners on your accord.
-              Now it becomes easy to manage your medical history with a click.
+                We reduce your burden of collecting medical prescriptions and
+                reports by storing and maintaining your medical records and
+                share them with your practitioners on your accord. Now it
+                becomes easy to manage your medical history with a click.
               </div>
               {/* <Link href="/prescription">
               <Button className={classes.button} variant="contained">
                 Manage Now
               </Button>
               </Link> */}
-              <Link to="/prescription">
+              <Link to="/prescription" style={{textDecoration: 'none'}}>
                 <Button className={classes.button} variant="contained">
                   Manage Now
                 </Button>
@@ -175,17 +177,19 @@ const Features = () => {
                 alt="lady"
                 className={classes.BackgroundHead1}
               ></img> */}
-              <div className={classes.heading1}>Know about our Health Experts</div>
-              <div className={classes.subHeading}>
-              We put together an array of dedicated,verified and skilled experts to assist you over every hurdle you come across in a diligent manner.We provide chats and video call options with recognised practitioners and medical experts.
+              <div className={classes.heading1} >
+                Know about our Health Experts
               </div>
-              <Link to = "/doctorlist">
-              <Button
-                className={classes.button}
-                variant="contained"
-              >
-                Consult Now
-              </Button>
+              <div className={classes.subHeading}>
+                We put together an array of dedicated,verified and skilled
+                experts to assist you over every hurdle you come across in a
+                diligent manner.We provide chats and video call options with
+                recognised practitioners and medical experts.
+              </div>
+              <Link to="/doctorlist" style={{textDecoration: 'none'}}>
+                <Button className={classes.button} variant="contained">
+                  Consult Now
+                </Button>
               </Link>
             </div>
           </div>
@@ -198,19 +202,19 @@ const Features = () => {
               ></img> */}
               <div className={classes.heading1}>Book Labs and Appointments</div>
               <div className={classes.subHeading}>
-              We reduce the hassle on searching for a doctor and booking a slot for an appointment by providing the facility of booking an appointment with a doctor according to your location and other requirements specified and notify you when the appointment is confirmed.
+                We reduce the hassle on searching for a doctor and booking a
+                slot for an appointment by providing the facility of booking an
+                appointment with a doctor according to your location and other
+                requirements specified and notify you when the appointment is
+                confirmed.
               </div>
-              <Link to = "/getAppointment">
-              <Button
-                className={classes.button}
-                variant="contained"
-              >
-                Book Now
-              </Button>
+              <Link to="/getAppointment" style={{textDecoration: 'none'}}>
+                <Button className={classes.button} variant="contained">
+                  Book Now
+                </Button>
               </Link>
             </div>
           </div>
-         
         </div>
       </div>
     </>

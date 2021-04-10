@@ -170,7 +170,8 @@ const Cervical = () => {
 	const [pcos, setPcos] = useState("");
 	const [bmi, setBmi] = useState("");
 	const [check, setCheck] = useState(null);
-	const answer= [74, 32, 17, 5, 23, 57, 43, 12, 40, 82, 17, 8, 34, 28, 25, 61, 85, 11, 6, 2]
+	const answer= [74, 32, 17, 5, 23, 57, 43, 12, 40, 82, 17, 
+	8, 34, 28, 25, 61, 85, 11, 6, 2]
 	const [weight, setWeight] = useState("");
 	const [period, setPeriod] = useState("");
 	const [concieve, setConcieve] = useState("");

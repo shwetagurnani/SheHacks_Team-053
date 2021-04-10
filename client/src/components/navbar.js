@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fff",
     fontFamily: "Open Sans Condensed, sans-serif",
     fontWeight: "bolder",
-    textTransform: "uppercase",
+    // textTransform: "uppercase",
     color: "black",
     letterSpacing: ".25em",
     // position: 'fixed',
@@ -41,11 +41,14 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     display: "none",
-    fontFamily: "Open Sans Condensed, sans-serif",
-    fontWeight: "bolder",
-    textTransform: "uppercase",
+    fontFamily: "Lobster, cursive",
+   
+    fontSize: "30px",
+    letterSpacing: ".05em",
+    // fontWeight: "bolder",
+    // textTransform: "uppercase",
     color: "black",
-    letterSpacing: ".25em",
+    // letterSpacing: ".25em",
 
     [theme.breakpoints.up("sm")]: {
       display: "block",
@@ -113,6 +116,10 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  logo: {
+    height: "64px",
+    width: "64px",
+  }
 }));
 
 const Navbar = () => {
@@ -218,15 +225,21 @@ const Navbar = () => {
             <Toolbar>
               <IconButton
                 edge="start"
-                className={classes.menuButton}
+                // className={classes.menuButton}
                 color="inherit"
                 aria-label="open drawer"
               >
-                <MenuIcon />
+                <Link to="/" style={{textDecoration: 'none'}}>
+                <img src="./logofinal.png" alt="logo" className={classes.logo}></img>
+                </Link>
+              
               </IconButton>
+              <Link to="/" style={{textDecoration: 'none'}}>
               <Typography className={classes.title} variant="h6" noWrap>
-                elegance
+                Elegance
               </Typography>
+              </Link>
+              
 
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
@@ -258,15 +271,19 @@ const Navbar = () => {
             <Toolbar>
               <IconButton
                 edge="start"
-                className={classes.menuButton}
+                // className={classes.menuButton}
                 color="inherit"
                 aria-label="open drawer"
               >
-                <MenuIcon />
+                <Link to="/" style={{textDecoration: 'none'}}>
+                <img src="./logofinal.png" alt="logo" className={classes.logo}></img>
+                </Link>
               </IconButton>
+              <Link to="/" style={{textDecoration: 'none'}}>
               <Typography className={classes.title} variant="h6" noWrap>
-                elegance
+                Elegance
               </Typography>
+              </Link>
 
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
