@@ -23,6 +23,7 @@ import BreastCancer from "./pages/AiTools/BreastCancer";
 import DoctorList from "./pages/features/DoctorList/DoctorList";
 import { AuthProvider } from "./components/context/Auth";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import doctorHistoryList from './pages/features/DoctorList/DoctorHistoryList';
 
 const App = () => {
   return (
@@ -53,6 +54,7 @@ const App = () => {
             <Route path="/cervical" component={Cervical} />
             <Route path="/breastcancer" component={BreastCancer} />
             <Route path="/doctorlist" component={DoctorList} />
+            
             <Route
               path="/uploadPrescriptionDoctor"
               component={NewPrescriptionDoctor}
@@ -61,6 +63,7 @@ const App = () => {
               path="/uploadPrescriptionPatient"
               component={NewPrescriptionPatient}
             />
+            <Route path="/doctorHistory" component={doctorHistoryList} />
           </Switch>
 
           <Footer />

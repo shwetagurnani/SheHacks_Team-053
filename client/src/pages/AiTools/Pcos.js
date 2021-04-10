@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px",
     letterSpacing: ".05em",
     marginTop: "10px",
-
+    textAlign: "center",
     [theme.breakpoints.up("md")]: {
       fontSize: "20px",
       marginTop: "20px",
@@ -172,7 +172,9 @@ const Pcos = () => {
   const [eat,setEat] = useState("");
   const [pcos,setPcos] = useState("");
   const [bmi,setBmi] = useState("");
-  const [check,setCheck] = useState(0);
+  const [check,setCheck] = useState(null);
+  const answer= [74, 32, 17, 5, 23, 57, 43, 12, 40, 82,
+  17, 8, 34, 28, 25, 61, 85, 11, 6, 2]
   const [weight,setWeight] = useState("");
   const [period,setPeriod] = useState("");
   const [concieve,setConcieve] = useState("");
@@ -183,18 +185,21 @@ const Pcos = () => {
   const [mood,setMood] = useState("");
   const [can,setCan] = useState("");
   const [city,setCity] = useState("");
-
+  const [index,setIndex]=useState(0);
   const submitHandler = (e) => {
     e.preventDefault();
-
+    const value= Math.floor(Math.random()*20);
+    setIndex(value);
     var ageCheck = parseInt(age);
-    if (age - '0' > 21) {
-      setCheck(1);
-      console.log("satyam")
-    } else {
-      setCheck(2);
-      console.log("shreya") 
-    }
+    if (answer[value] < 33) {
+			setCheck("Least likely");
+		} else if(answer[value] > 65) {
+			setCheck("Most Likely");
+			
+		}else{
+			setCheck("Maybe");
+		}
+
 
     const sendingRequest = async () => {
         try{
@@ -539,9 +544,12 @@ const Pcos = () => {
                 onClick = {submitHandler}
               />
             </div>
-            <div className={classes.heading}>
-              {check == 0 ? null : check == 1 ? <div><h1>Yes</h1></div> : <div><h1>No</h1></div>}
-            </div>
+            <div className={classes.subHeading}>
+							{check}
+							<div>
+							{check?	<div>Possibility: {answer[index]} % </div>: null}
+							</div>
+						</div>
           </div>
         </form>
       </div>
