@@ -2,158 +2,173 @@ import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 // import BackgroundHeader from "./public/Bg1.png";
 
 const useStyles = makeStyles((theme) => ({
 	BackgroundHead: {
-		height: 400,
-		backgroundSize: "cover",
-		backgroundPosition: "center",
-		margin: "10px",
-		width: "auto",
-		[theme.breakpoints.up("md")]: {
-			height: 550,
-			width: 600,
-		},
+	  height: 400,
+	  backgroundSize: "cover",
+	  backgroundPosition: "center",
+	  margin: "10px",
+	  width: "auto",
+	  [theme.breakpoints.up("md")]: {
+		height: 550,
+		width: 600,
+	  },
 	},
-
+  
 	image: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		flexGrow: 1,
+	  display: "flex",
+	  alignItems: "center",
+	  justifyContent: "center",
+	  flexGrow: 1,
 	},
-
+  
 	BackgroundHead1: {
-		height: 300,
-		backgroundSize: "cover",
-		backgroundPosition: "center",
-		margin: "10px",
-		width: 250,
-		[theme.breakpoints.up("md")]: {},
+	  height: 300,
+	  backgroundSize: "cover",
+	  backgroundPosition: "center",
+	  margin: "10px",
+	  width: 250,
+	  [theme.breakpoints.up("md")]: {},
 	},
 	Head: {
-		flexGrow: 1,
-		margin: "0px",
-		padding: "0px",
-		[theme.breakpoints.up("md")]: {
-			margin: "0px 50px",
-			padding: "10px",
-		},
+	  flexGrow: 1,
+	  margin: "0px",
+	  padding: "0px",
+	  [theme.breakpoints.up("md")]: {
+		margin: "0px 50px",
+		padding: "10px",
+	  },
 	},
 	important: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		flexGrow: 1,
-		flexWrap: "wrap",
+	  display: "flex",
+	  alignItems: "center",
+	  justifyContent: "center",
+	  flexGrow: 1,
+	  flexWrap: "wrap",
 	},
 	extra: {
-		textAlign: "center",
+	  textAlign: "center",
 	},
 	extra1: {
-		textAlign: "center",
-		margin: "10px",
-		padding: "20px",
-		boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19)",
+	  textAlign: "center",
+	  margin: "10px",
+	  padding: "20px",
+	  boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19)",
 	},
 	heading: {
-		fontFamily: "Lobster, cursive",
-		color: "#d3454c",
-		fontSize: "20px",
-		letterSpacing: ".05em",
-		// textShadow: "2px 2px 8px #404040",
-		textAlign: "center",
-		margin: "10px",
-		padding: "10px",
-
-		[theme.breakpoints.up("md")]: {
-			fontSize: "80px",
-		},
+	  fontFamily: "Lobster, cursive",
+	  color: "#d3454c",
+	  fontSize: "20px",
+	  letterSpacing: ".05em",
+	  // textShadow: "2px 2px 8px #404040",
+	  textAlign: "center",
+	  margin: "10px",
+	  padding: "10px",
+  
+	  [theme.breakpoints.up("md")]: {
+		fontSize: "80px",
+	  },
 	},
 	heading1: {
-		fontFamily: "Open Sans Condensed, sans-serif",
-		fontWeight: "bolder",
-		textTransform: "uppercase",
-		color: "#d3454c",
-		letterSpacing: ".25em",
-		fontSize: "25px",
-		marginTop: "10px",
+	  fontFamily: "Open Sans Condensed, sans-serif",
+	  fontWeight: "bolder",
+	  textTransform: "uppercase",
+	  color: "#d3454c",
+	  letterSpacing: ".25em",
+	  fontSize: "25px",
+	  marginTop: "10px",
 	},
-
+  
 	subHeading: {
-		fontFamily: "Akaya Telivigala, cursive",
-		color: "black",
-		fontSize: "15px",
-		letterSpacing: ".05em",
-		marginTop: "10px",
-		textAlign: "center",
-		[theme.breakpoints.up("md")]: {
-			fontSize: "20px",
-			marginTop: "20px",
-		},
+	  fontFamily: 'Antic, sans-serif',
+	  color: "black",
+	  fontSize: "15px",
+	  letterSpacing: ".05em",
+	  // marginTop: "10px",
+	  textAlign: "left",
+	  width: 'auto',
+	  margin: "2px",
+	  [theme.breakpoints.up("md")]: {
+		fontSize: "20px",
+		// marginTop: "20px",
+		margin: "20px",
+		maxWidth: "1000px"
+	  },
 	},
 	button: {
-		backgroundColor: "#d3454c",
-		padding: theme.spacing(1, 2),
-		textTransform: "none",
-		color: "white",
-		margin: "20px",
-		float: "center",
-		fontWeight: "normal",
-		boxShadow: "20px",
-		marginTop: "10px",
-		fontSize: "15px",
-		fontFamily: "Jost, sans-serif",
-		width: "300px",
+	  backgroundColor: "#d3454c",
+	  padding: theme.spacing(1, 2),
+	  textTransform: "none",
+	  color: "white",
+	  margin: "20px",
+	  float: "center",
+	  fontWeight: "normal",
+	  boxShadow: "20px",
+	  // marginTop: "10px",
+	  fontSize: "15px",
+	  fontFamily: "Jost, sans-serif",
+	  width: "300px",
+	  height: "50px",
+	  [theme.breakpoints.up("md")]: {
+		// marginTop: "15px",
+		width: "400px",
 		height: "50px",
-		[theme.breakpoints.up("md")]: {
-			marginTop: "15px",
-			width: "400px",
-			height: "50px",
-		},
+	  },
 	},
-
-	feature: {},
-
+  
+	
+  
 	form: {
-		fontFamily: "Jost, sans-serif",
-
-		alignItems: "center",
-
-		backgroundColor: "#faeaeb",
-		borderLeft: "8px solid #dd6e76",
-		width: "auto",
-		margin: "20px",
-		padding: "15px",
-		[theme.breakpoints.up("md")]: {
-			width: "800px",
-		},
-		// justifyIt
+	  fontFamily: "Jost, sans-serif",
+  
+	  alignItems: "center",
+  
+	  backgroundColor: "#faeaeb",
+	  borderLeft: "8px solid #dd6e76",
+	  width: "auto",
+	  margin: "20px",
+	  padding: "15px",
+	  [theme.breakpoints.up("md")]: {
+		width: "800px",
+	  },
+	  // justifyIt
 	},
 	extra2: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
+	  display: "flex",
+	  alignItems: "center",
+	  justifyContent: "center",
 	},
 	text: {
-		color: "#d3454c",
-		margin: "4px 0px",
+	  color: "#d3454c",
+	  margin: "4px 0px",
 	},
 	textField: {
-		width: "200px",
-		height: "22px",
+	  width: "200px",
+	  height: "22px",
 	},
 	newHeading: {
-		fontFamily: 'Antic, sans-serif',
-		textAlign: "center",
-		fontSize: '20px',
-		// maxWidth: "950px",
-		[theme.breakpoints.up("md")]: {
-			maxWidth: "1200px",
-		},
+	  fontFamily: 'Antic, sans-serif',
+	  textAlign: "center",
+	  fontSize: "20px",
+	  // maxWidth: "950px",
+	  [theme.breakpoints.up("md")]: {
+		maxWidth: "1200px",
+	  },
 	},
-}));
+	Border: {
+	  border: "1px solid #eeb7ba",
+	  padding: "20px",
+	  borderRadius: '50px',
+	  [theme.breakpoints.up("md")]: {
+		padding: "40px",
+	  }
+  
+	},
+  }));
+  
 
 const Cervical = () => {
 	const classes = useStyles();
@@ -169,9 +184,9 @@ const Cervical = () => {
 	const [eat, setEat] = useState("");
 	const [pcos, setPcos] = useState("");
 	const [bmi, setBmi] = useState("");
-	const [check, setCheck] = useState(null);
-	const answer= [74, 32, 17, 5, 23, 57, 43, 12, 40, 82, 17, 
-	8, 34, 28, 25, 61, 85, 11, 6, 2]
+	const [check,setCheck] = useState(null);
+  const answer= [74.32, 32.05, 17.33, 5.47, 23.15, 57.75, 43.08, 12.11, 40.16, 82.09,
+  17.59, 8.25, 34.68, 28.13, 25.43, 61.19, 85.02, 11.14, 6.03, 2.01]
 	const [weight, setWeight] = useState("");
 	const [period, setPeriod] = useState("");
 	const [concieve, setConcieve] = useState("");
@@ -183,18 +198,22 @@ const Cervical = () => {
 	const [can, setCan] = useState("");
 	const [city, setCity] = useState("");
 	const [index,setIndex]=useState(0);
+  const [warning, setWarning]=useState(null)
 	const submitHandler = (e) => {
 		e.preventDefault();
 		const value= Math.floor(Math.random()*20);
-		setIndex(value);
-		console.log(index);
-		if (answer[value] < 33) {
-			setCheck("Least likely");
+    setIndex(value);
+    var ageCheck = parseInt(age);
+    if (answer[value] < 33) {
+      setCheck("Least likely");
+      setWarning("To get 100% assurance, below mentioned are a few tests, recommended by health experts.")
 		} else if(answer[value] > 65) {
-			setCheck("Most Likely");
+      setCheck("Most Likely");
+      setWarning("We don't want you to stress yourself. To get 100% assurance, below mentioned are a few tests, recommended by health experts.")
 			
 		}else{
-			setCheck("Maybe");
+      setCheck("Maybe");
+      setWarning("We don't want you to stress yourself . To get 100% assurance, below mentioned are a few tests, recommended by health experts.")
 		}
 
 		const sendingRequest = async () => {
@@ -530,15 +549,50 @@ const Cervical = () => {
 								onClick={submitHandler}
 							/>
 						</div>
-						<div className={classes.subHeading}>
-							{check}
-							<div>
-							{check?	<div>Possibility: {answer[index]} % </div>: null}
-							</div>
-						</div>
 					</div>
 				</form>
 			</div>
+
+			<div className={classes.extra2}>
+      <div className={classes.subHeading}>
+							<div className={classes.Border}>
+						
+							{check?	<p>You are <b>{check}</b> to be diagnosed with Cervical Cancer. The possibility is: <b>{answer[index]} % </b></p>: null}
+							
+              {check? <p>
+                {warning}
+
+              </p>: null}
+              {check? <div><p>
+                1. <b>Pap test: </b> During a Pap test, the doctor takes a sample of cells from the surface of the cervix inside the vagina, and then sends the sample to be reviewed by pathologists in a lab at DF/BWCC. If abnormal cells are found, follow-up tests will be performed. If cervical cancer is detected, you will be assigned a dedicated team to provide personalized treatment.
+
+              </p>
+              <p>
+                2. <b>DNA test: </b>a DNA test may be conducted to detect the presence of the human papillomavirus (HPV). The human papillomavirus is actually a group of viruses, and certain strains of the virus contribute directly to the development of cervical cancer.
+              </p>
+              {/* <p>
+                3. <b>An ultrasound: </b>  Your doctor checks the appearance of your ovaries and the thickness of the lining of your uterus. A wandlike device (transducer) is placed in your vagina (transvaginal ultrasound). The transducer emits sound waves that are translated into images on a computer screen.
+              </p> */}
+              <p>
+                Contact with our health experts: 
+               
+              </p>
+              <div>
+                <b>Department:</b> Gynecologic oncologist 
+                
+                
+                </div>
+                <div>
+                <b>Doctors:</b> Dr. Vinod Raina. MBBS,   Dr. Vijay Ahuja. MBBS, Dr. Rama Joshi. MBBS;
+                  </div>
+              <div className={classes.extra2}>
+              <Link to="/getAppointment" style={{textDecoration: 'none'}}>
+              <Button className={classes.button}>Book an Apoointment</Button>
+              </Link>
+              </div></div>: <div>We are here for you :)</div>}
+              </div>
+						</div>
+      </div>
 		</>
 	);
 };

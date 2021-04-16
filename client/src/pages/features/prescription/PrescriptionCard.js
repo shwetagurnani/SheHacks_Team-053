@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   subHeading: {
-    fontFamily: "Akaya Telivigala, cursive",
+    fontFamily: 'Antic, sans-serif',
     color: "black",
     fontSize: "15px",
     letterSpacing: ".05em",

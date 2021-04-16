@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 // import BackgroundHeader from "./public/Bg1.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -598,7 +599,9 @@ const Pcos = () => {
                 <b>Doctors:</b> Daniel Breitkopf;  M.D,  Asma Chattha; M.B.B.S, Deepa Suresh, M.D;
                   </div>
               <div className={classes.extra2}>
-              <Button className={classes.button} href="/getAppointment">Book an Apoointment</Button>
+              <Link to="/getAppointment" style={{textDecoration: 'none'}}>
+              <Button className={classes.button}>Book an Apoointment</Button>
+              </Link>
               </div></div>: <div>We are here for you :)</div>}
               </div>
 						</div>

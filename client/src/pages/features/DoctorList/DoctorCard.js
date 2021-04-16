@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   subHeading: {
-    fontFamily: "Akaya Telivigala, cursive",
+    fontFamily: 'Antic, sans-serif',
     color: "black",
     fontSize: "15px",
     letterSpacing: ".05em",
@@ -143,7 +143,7 @@ const PrescriptionCard = (props) => {
                 className={classes.BackgroundHead1}
               ></img> */}
               <div className={classes.heading1}>{props.doctorName}</div>
-              <div className={classes.heading1}>Registration Number: {props.registration}</div>
+              <div className={classes.subHeading}> <b>Registration Number: </b> {props.registration}</div>
               <div className={classes.subHeading}>
                {props.achivements}
               </div>

@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Akaya Telivigala, cursive",
     color: "black",
     fontSize: "15px",
-    letterSpacing: ".05em",
+    // letterSpacing: ".05em",
     marginTop: "10px",
     [theme.breakpoints.up("md")]: {
       fontSize: "20px",
